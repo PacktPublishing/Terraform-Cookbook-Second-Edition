@@ -20,13 +20,12 @@ variable "environment" {
   description = "Environment Name"
 }
 
-
-variable "custom_app_settings" {
-  description = "Custom App settings"
-  default     = {}
-}
-
 variable "createdby" {
   description = "name of the triggers user"
   default     = "NA"
+}
+
+variable "connection_string" {
+  description = "BDD connection string"
+  sensitive = true
 }

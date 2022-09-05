@@ -42,6 +42,9 @@ resource "azurerm_linux_web_app" "app" {
   service_plan_id     = azurerm_service_plan.plan-app.id
 
   site_config {}
+  app_settings = {
+    CONNECTION_STRING = var.connection_string
+  }
 }
 
 resource "azurerm_application_insights" "appinsight-app" {

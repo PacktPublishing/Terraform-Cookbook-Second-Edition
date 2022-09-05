@@ -1,6 +1,9 @@
-# Configure the Microsoft Azure Provider
+terraform {
+  required_version = ">= 0.15"
+}
+
 provider "azurerm" {
-    version = "< 2.0.0"
+  features {}
 }
 
 # Create a resource group if it doesn’t exist
@@ -22,7 +25,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
     name                 = "mySubnet-demo"
     resource_group_name  = azurerm_resource_group.myterraformgroup.name
     virtual_network_name = azurerm_virtual_network.myterraformnetwork.name
-    address_prefix       = "10.0.1.0/24"
+    address_prefixes       = ["10.0.1.0/24"]
 }
 
 # Create public IPs
@@ -57,7 +60,6 @@ resource "azurerm_network_interface" "myterraformnic" {
     name                      = "myNIC-demo"
     location                  = "westeurope"
     resource_group_name       = azurerm_resource_group.myterraformgroup.name
-    network_security_group_id = azurerm_network_security_group.myterraformnsg.id
 
     ip_configuration {
         name                          = "myNicConfiguration"

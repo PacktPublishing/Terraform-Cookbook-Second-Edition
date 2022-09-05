@@ -1,2 +1,2 @@
-environment = "Production"
+environment = "dev"
 app_name     = "myapp"
