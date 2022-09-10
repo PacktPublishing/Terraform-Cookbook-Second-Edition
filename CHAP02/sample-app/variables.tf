@@ -25,7 +25,7 @@ variable "createdby" {
   default     = "NA"
 }
 
-variable "connection_string" {
-  description = "BDD connection string"
-  sensitive = true
+variable "api_key" {
+  description = "api key"
+  sensitive   = true
 }

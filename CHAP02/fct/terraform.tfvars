@@ -1,2 +1,2 @@
 environment = "dev"
-app_name     = "myapp"
+app_name    = "myapp"

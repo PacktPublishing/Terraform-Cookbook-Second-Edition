@@ -6,11 +6,11 @@ resource "local_file" "myfile" {
 resource "null_resource" "readcontentfile" {
 
   triggers = {
-        trigger = timestamp()
+    trigger = timestamp()
   }
 
   provisioner "local-exec" {
-    command = "Get-Content -Path ../mytextfile.txt" 
+    command = "Get-Content -Path ../mytextfile.txt"
 
     interpreter = ["PowerShell", "-Command"]
   }

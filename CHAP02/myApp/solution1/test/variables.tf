@@ -27,6 +27,6 @@ variable "custom_app_settings" {
 }
 
 variable "createdby" {
-  description ="name of the triggers user"
-  default ="NA"
+  description = "name of the triggers user"
+  default     = "NA"
 }

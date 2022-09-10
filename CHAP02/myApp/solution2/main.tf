@@ -32,7 +32,7 @@ resource "azurerm_app_service_plan" "plan-app" {
   }
 
   tags = {
-    ENV = var.environment
+    ENV       = var.environment
     CreatedBy = var.createdby
   }
 }
@@ -51,7 +51,7 @@ resource "azurerm_application_insights" "appinsight-app" {
   application_type    = "web"
 
   tags = {
-    ENV = var.environment
+    ENV       = var.environment
     CreatedBy = var.createdby
   }
 }

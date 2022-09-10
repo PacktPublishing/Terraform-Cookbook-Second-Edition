@@ -1,5 +1,5 @@
 provider "azurerm" {
- features {}
+  features {}
 }
 
 variable "application_name" {

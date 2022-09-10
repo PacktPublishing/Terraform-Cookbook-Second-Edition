@@ -4,7 +4,7 @@ terraform {
 }
 
 provider "azurerm" {
-   features {}
+  features {}
 }
 
 locals {
@@ -41,7 +41,7 @@ resource "azurerm_application_insights" "appinsight-app" {
   application_type    = "web"
 
   tags = {
-    ENV = var.environment
+    ENV       = var.environment
     CreatedBy = var.createdby
   }
 }

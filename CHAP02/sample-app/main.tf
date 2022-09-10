@@ -43,7 +43,7 @@ resource "azurerm_linux_web_app" "app" {
 
   site_config {}
   app_settings = {
-    CONNECTION_STRING = var.connection_string
+    API_KEY = var.api_key
   }
 }
 
@@ -72,5 +72,5 @@ output "webapp_name" {
 output "webapp_password" {
   description = "output credential of the webapp"
   value       = azurerm_linux_web_app.app.site_credential
-  sensitive = true
+  sensitive   = true
 }
