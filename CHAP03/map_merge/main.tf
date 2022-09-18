@@ -47,7 +47,7 @@ resource "azurerm_app_service" "app" {
     scm_type                 = "LocalGit"
   }
 
-  app_settings = merge(local.default_app_settings,var.custom_app_settings)
+  app_settings = merge(local.default_app_settings, var.custom_app_settings)
 
   #app_settings = {"KEY1" = "VAL1", "KEY2" = "VAL2"}
 

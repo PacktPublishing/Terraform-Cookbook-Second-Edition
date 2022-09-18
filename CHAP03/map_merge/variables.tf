@@ -39,6 +39,6 @@ variable "tags" {
 
 variable "custom_app_settings" {
   description = "Custom app settings"
-  type = map(string)
+  type        = map(string)
   default     = {}
 }

@@ -9,8 +9,8 @@ ngs_rules = [
     destination_port_range     = "80"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
-    }, 
-    {
+  },
+  {
     name                       = "rule"
     priority                   = 110
     direction                  = "Inbound"

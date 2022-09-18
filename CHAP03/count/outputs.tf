@@ -1,3 +1,3 @@
-output "app_service_names"{
-    value = azurerm_app_service.app.*.name
+output "app_service_names" {
+  value = azurerm_linux_web_app.app.*.name
 }
