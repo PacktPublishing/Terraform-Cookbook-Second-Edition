@@ -8,7 +8,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rgdep"
-  location = "West Europe"
+  location = "West US"
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -30,5 +30,5 @@ resource "azurerm_virtual_network" "vnet" {
 
 
 variable "address_space" {
-  default = "10.0.0.0/24"
+  default = "10.0.0.0/16"
 }
