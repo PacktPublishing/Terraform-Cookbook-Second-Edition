@@ -1,6 +1,7 @@
+#!/bin/bash
 TERRAFORM_VERSION=1.2.5
 
-# This is the public key from above - one-time step.
+# hashicorp.asc is the public key from https://www.hashicorp.com/security#current-key
 gpg --import hashicorp.asc
 
 # Download the archive and signature files.
