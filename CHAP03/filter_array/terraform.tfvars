@@ -5,7 +5,7 @@ environment         = "dev"
 
 web_apps = {
   webapp1 = {
-    "name" = "webappdemobook1"
+    "name" = "webapptestbook1"
     "os"   = "Linux"
   },
   webapp2 = {

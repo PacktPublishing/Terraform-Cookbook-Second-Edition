@@ -22,7 +22,7 @@ resource "azurerm_resource_group" "rg-app" {
 }
 
 
-data "azurerm_app_service_plan" "myplan" {
+data "azurerm_service_plan" "myplan" {
   name                = "app-service-plan"
   resource_group_name = "rg-service_plan"
 }
@@ -31,7 +31,7 @@ resource "azurerm_app_service" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = data.azurerm_app_service_plan.myplan.id
+  app_service_plan_id = data.azurerm_service_plan.myplan.id
 }
 
 resource "azurerm_application_insights" "appinsight-app" {
