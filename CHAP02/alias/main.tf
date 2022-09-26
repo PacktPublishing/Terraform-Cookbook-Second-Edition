@@ -8,13 +8,13 @@ terraform {
 }
 
 provider "azurerm" {
-  subscription_id = "8a7aace5-74aa-416f-b8e4-2c292b6304e5"
+  subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   alias           = "sub1"
   features {}
 }
 
 provider "azurerm" {
-  subscription_id = "249e22ad-c375-4f9b-a370-2242f83515d4"
+  subscription_id = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
   alias           = "sub2"
   features {}
 }
