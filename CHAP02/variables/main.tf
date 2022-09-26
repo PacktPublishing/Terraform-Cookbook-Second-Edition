@@ -19,7 +19,7 @@ variable "location" {
   description = "The name of the Azure location"
   default     = "westeurope"
   validation {
-    condition     = can(index(["westeurope", "westus"], var.location) >= 0)
+    condition     = contains(["westeurope", "westus"], var.location)
     error_message = "The location must be westeurope or westus."
   }
 }
