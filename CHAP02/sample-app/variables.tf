@@ -26,6 +26,6 @@ variable "createdby" {
 }
 
 variable "api_key" {
-  description = "api key"
+  description = "Custom application API key"
   sensitive   = true
 }
