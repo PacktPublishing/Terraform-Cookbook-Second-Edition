@@ -81,39 +81,28 @@ resource "random_password" "password" {
 }
 
 # Create virtual machine
-resource "azurerm_virtual_machine" "myterraformvm" {
+resource "azurerm_linux_virtual_machine" "myterraformvm" {
   name                  = "myVM"
   location              = "westeurope"
   resource_group_name   = azurerm_resource_group.myterraformgroup.name
   network_interface_ids = [azurerm_network_interface.myterraformnic.id]
-  vm_size               = "Standard_DS1_v2"
+  size                  = "Standard_DS1_v2"
 
-  storage_os_disk {
-    name              = "myOsDisk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+  os_disk {
+    name                 = "myOsDisk"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
   }
 
-  storage_image_reference {
+  source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04.0-LTS"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts"
     version   = "latest"
   }
 
-  os_profile {
-    computer_name  = "vmdemo"
-    admin_username = "admin"
-    admin_password = random_password.password.result
-  }
-
-  os_profile_linux_config {
-    disable_password_authentication = false
-  }
-
-  boot_diagnostics {
-    enabled     = "false"
-    storage_uri = "https://myuri"
-  }
+  computer_name  = "vmdemo"
+  admin_username = "demoadmin"
+  admin_password = random_password.password.result
+  disable_password_authentication = false
 }
