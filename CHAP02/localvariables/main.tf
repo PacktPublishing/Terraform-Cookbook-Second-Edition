@@ -25,12 +25,12 @@ variable "country_code" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "RG-${local.resource_name}"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_public_ip" "pip" {
   name                = "IP-${local.resource_name}"
-  location            = "West Europe"
+  location            = "westeurope"
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
   domain_name_label   = "mydomain"

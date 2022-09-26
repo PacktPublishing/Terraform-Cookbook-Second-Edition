@@ -17,7 +17,7 @@ locals {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rgyamldemo"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_virtual_network" "vnet" {

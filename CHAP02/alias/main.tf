@@ -22,11 +22,11 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   provider = azurerm.sub1
   name     = "rg-sub1"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_resource_group" "rg2" {
   provider = azurerm.sub2
   name     = "rg-sub2"
-  location = "West Europe"
+  location = "westeurope"
 }
