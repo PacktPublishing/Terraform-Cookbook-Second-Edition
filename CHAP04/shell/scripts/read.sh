@@ -1,8 +1,8 @@
 #!/bin/bash
+echo "reading.."
 
 IN=$(cat)
-id=$(echo $IN | jq -r .data.id)
+echo "stdin: ${IN}" #the old state
 
-resp=$(curl \
-  --request GET \
-   https://dummy.restapiexample.com/api/v1/employee/${id})
+#business logic
+cat book.json # Last JSON object written to stdout is taken to be state

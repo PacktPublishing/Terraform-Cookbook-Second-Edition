@@ -1,6 +1,8 @@
 #!/bin/bash
+echo "deleting..."
 
-resp=$(curl \
-  --request DELETE \
-  --data @payload.json \
-   https://dummy.restapiexample.com/api/v1/delete)
+IN=$(cat)
+echo "stdin: ${IN}" #the old state
+
+#business logic
+rm -rf book.json

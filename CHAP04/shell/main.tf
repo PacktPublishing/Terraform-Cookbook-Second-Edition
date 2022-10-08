@@ -7,11 +7,9 @@ terraform {
   }
 }
 
-provider "shell" {
-  # Configuration options
-}
+provider "shell" {}
 
-resource "shell_script" "sample" {
+resource "shell_script" "sh" {
     lifecycle_commands {
         //I suggest having these command be as separate files if they are non-trivial
         create = file("${path.module}/scripts/create.sh")
@@ -19,14 +17,7 @@ resource "shell_script" "sample" {
         delete = file("${path.module}/scripts/delete.sh")
     }
 
-
-
-    //this overrides the provider supplied interpreter
-    //if you do not specify this then the default for your
-    //machine will be used (/bin/sh for linux/mac and cmd for windows)
     interpreter = ["/bin/bash", "-c"]
-
-    //sets current working directory
     working_directory = path.module
 
     //triggers a force new update if value changes, like null_resource
@@ -36,5 +27,5 @@ resource "shell_script" "sample" {
 }
 
 output "id" {
-    value = shell_script.sample.output["data.id"]
+    value = shell_script.sh.output["id"]
 }
