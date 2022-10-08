@@ -1,0 +1,13 @@
+
+cd /mnt/c/Terraform-Cookbook-Second-Edition/
+az account set -s "8a7aace5-74aa-416f-b8e4-2c292b6304e5"
+export PROMPT_DIRTRIM=1
+
+
+
+termshot -c "terraform plan" -f chap4.png
+sudo cp out2.png /mnt/c/tmp
+
+
+
+https://github.com/homeport/termshot
