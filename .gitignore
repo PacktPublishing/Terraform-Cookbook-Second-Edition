@@ -3,3 +3,4 @@ note.txt
 terraform.tfstate
 terraform.tfstate.backup
 .infracost
+cmd.txt
