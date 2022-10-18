@@ -14,10 +14,6 @@ variable "service_plan_name" {
   description = "Service plan name"
 }
 
-variable "nb_webapp" {
-  description = "Number of web App to create"
-}
-
 variable "app_name" {
   type        = string
   description = "Name of application"
