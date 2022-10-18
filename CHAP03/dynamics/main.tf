@@ -22,7 +22,7 @@ resource "azurerm_network_security_group" "example" {
   resource_group_name = azurerm_resource_group.rg.name
 
   dynamic "security_rule" {
-    for_each = var.ngs_rules
+    for_each = var.nsg_rules
     content {
       name                       = security_rule.value["name"]
       priority                   = security_rule.value["priority"]
@@ -34,7 +34,5 @@ resource "azurerm_network_security_group" "example" {
       source_address_prefix      = security_rule.value["source_address_prefix"]
       destination_address_prefix = security_rule.value["destination_address_prefix"]
     }
-
   }
-
 }

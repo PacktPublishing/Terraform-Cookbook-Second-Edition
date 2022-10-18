@@ -1,4 +1,4 @@
-variable "ngs_rules" {
+variable "nsg_rules" {
   description = "List of NSG rules"
   type        = list(object({
     name                       = string
