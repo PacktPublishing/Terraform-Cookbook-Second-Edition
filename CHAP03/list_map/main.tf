@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.1"
+  required_version = "~> 1.3"
   required_providers {
     azurerm = {
       version = "~> 3.23"
@@ -31,7 +31,7 @@ resource "azurerm_linux_web_app" "app" {
   for_each = var.web_apps
 
   name                = each.value["name"]
-  location            = lookup(each.value, "location", "West Europe")
+  location            = each.value["location"]
   resource_group_name = azurerm_resource_group.rg-app.name
   service_plan_id     = azurerm_service_plan.plan-app.id
 
