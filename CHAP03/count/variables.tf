@@ -27,7 +27,7 @@ variable "environment" {
 }
 
 
-variable "nb_webapp" {
+variable "webapp_count" {
   type        = number
   description = "Number of web App to create"
 }
