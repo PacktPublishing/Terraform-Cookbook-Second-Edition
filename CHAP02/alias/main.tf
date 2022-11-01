@@ -14,7 +14,7 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  subscription_id = "249e22ad-c375-4f9b-a370-2242f83515d4"
+  subscription_id = "4df82e26-6953-4c19-a43f-777c936a8105"
   alias           = "sub2"
   features {}
 }
@@ -22,11 +22,11 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   provider = azurerm.sub1
   name     = "rg-sub1"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_resource_group" "rg2" {
   provider = azurerm.sub2
   name     = "rg-sub2"
-  location = "West Europe"
+  location = "westeurope"
 }

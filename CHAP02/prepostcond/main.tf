@@ -23,7 +23,7 @@ resource "azurerm_virtual_network" "vnet" {
     }
     postcondition {
       condition     = self.location == "westeurope"
-      error_message = "Location must be West Europe"
+      error_message = "Location must be westeurope"
     }
   }
 }

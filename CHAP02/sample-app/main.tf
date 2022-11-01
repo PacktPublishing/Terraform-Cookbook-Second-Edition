@@ -65,12 +65,12 @@ output "webapp_hostname" {
 }
 
 output "webapp_name" {
-  description = "output Name of the webapp"
+  description = "Name of the webapp"
   value       = azurerm_linux_web_app.app.name
 }
 
 output "webapp_password" {
-  description = "output credential of the webapp"
+  description = "credential of the webapp"
   value       = azurerm_linux_web_app.app.site_credential
   sensitive   = true
 }

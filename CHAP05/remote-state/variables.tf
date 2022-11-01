@@ -4,7 +4,7 @@ variable "resource_group_name" {
 
 variable "location" {
   description = "Location of Azure reource"
-  default     = "West Europe"
+  default     = "westeurope"
 }
 
 variable "service_plan_name" {
@@ -27,6 +27,6 @@ variable "custom_app_settings" {
 }
 
 variable "createdby" {
-  description ="name of the triggers user"
-  default ="NA"
+  description = "name of the triggers user"
+  default     = "NA"
 }

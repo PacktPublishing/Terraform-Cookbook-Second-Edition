@@ -6,7 +6,7 @@ environment         = "DEV1"
 web_apps = {
   webapp1 = {
     "name"                = "webappdemobook1"
-    "location"            = "West Europe"
+    "location"            = "westeurope"
     "serverdatabase_name" = "server1"
   },
   webapp2 = {

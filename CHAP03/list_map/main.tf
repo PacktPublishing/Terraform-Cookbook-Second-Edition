@@ -27,7 +27,7 @@ resource "azurerm_linux_web_app" "app" {
   for_each = var.web_apps
 
   name                = each.value["name"]
-  location            = lookup(each.value, "location", "West Europe")
+  location            = lookup(each.value, "location", "westeurope")
   resource_group_name = azurerm_resource_group.rg-app.name
   service_plan_id     = azurerm_service_plan.plan-app.id
 
