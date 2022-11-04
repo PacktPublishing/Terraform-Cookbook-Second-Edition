@@ -83,7 +83,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   network_interface_ids           = [azurerm_network_interface.myterraformnic.id]
   disable_password_authentication = false
   computer_name                   = "vmdemo"
-  admin_username                  = "admin"
+  admin_username                  = "uservm"
   admin_password                  = random_password.password.result
   size                            = "Standard_DS1_v2"
 
@@ -96,7 +96,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku = "18.04-LTS"
+    sku       = "19.04"
     version   = "latest"
   }
 }
