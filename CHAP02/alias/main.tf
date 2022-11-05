@@ -1,20 +1,20 @@
 terraform {
-  required_version = ">= 1.1.0"
+  required_version = "~> 1.1"
   required_providers {
     azurerm = {
-      version = "3.9.0"
+      version = "~> 3.9.0"
     }
   }
 }
 
 provider "azurerm" {
-  subscription_id = "8a7aace5-74aa-416f-b8e4-2c292b6304e5"
+  subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   alias           = "sub1"
   features {}
 }
 
 provider "azurerm" {
-  subscription_id = "4df82e26-6953-4c19-a43f-777c936a8105"
+  subscription_id = "yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
   alias           = "sub2"
   features {}
 }

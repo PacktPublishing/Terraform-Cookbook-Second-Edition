@@ -1,6 +1,10 @@
-
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.0"
+  required_providers {
+    azurerm = {
+      version = "~> 3.18"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -60,7 +64,7 @@ resource "azurerm_application_insights" "appinsight-app" {
 }
 
 output "webapp_hostname" {
-  description = "hostname of the webapp"
+  description = "Hostname of the webapp"
   value       = azurerm_linux_web_app.app.default_hostname
 }
 
@@ -70,7 +74,7 @@ output "webapp_name" {
 }
 
 output "webapp_password" {
-  description = "credential of the webapp"
+  description = "Credential of the webapp"
   value       = azurerm_linux_web_app.app.site_credential
   sensitive   = true
 }
