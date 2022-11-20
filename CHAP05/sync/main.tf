@@ -1,10 +1,6 @@
+
 terraform {
-  required_version = "~> 1.3"
-  required_providers {
-    azurerm = {
-      version = "~> 3.23"
-    }
-  }
+  required_version = ">= 1.0"
 }
 
 provider "azurerm" {
@@ -23,23 +19,23 @@ resource "azurerm_service_plan" "plan-app" {
   name                = "${var.service_plan_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  os_type             = "Linux"
-  sku_name            = "S1"
+
+  os_type  = "Linux"
+  sku_name = "B1"
+
+  tags = {
+    ENV       = var.environment
+    CreatedBy = var.createdby
+  }
 }
 
 resource "azurerm_linux_web_app" "app" {
-  for_each = var.web_apps
-
-  name                = each.value["name"]
-  location            = lookup(each.value, "location", "westeurope")
+  name                = "${var.app_name}-${var.environment}"
+  location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id     = azurerm_service_plan.plan-app.id
-
-  site_config {}
-
-  connection_string {
-    name  = "DataBase"
-    type  = "SQLServer"
-    value = "Server=${each.value["serverdatabase_name"]};Integrated Security=SSPI"
+  service_plan_id = azurerm_service_plan.plan-app.id
+  site_config{}
+  app_settings = {
+    API_KEY="demo123456"
   }
 }

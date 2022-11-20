@@ -1,4 +1,4 @@
-sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+sudo apt update && sudo apt install gpg
 
 wget -O- https://apt.releases.hashicorp.com/gpg | \
     gpg --dearmor | \

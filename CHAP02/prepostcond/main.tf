@@ -1,5 +1,10 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.0"
+  required_providers {
+    azurerm = {
+      version = "~> 3.18"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -8,7 +13,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rgdep"
-  location = "West US"
+  location = "westus"
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -23,11 +28,10 @@ resource "azurerm_virtual_network" "vnet" {
     }
     postcondition {
       condition     = self.location == "westeurope"
-      error_message = "Location must be West Europe"
+      error_message = "Location must be westeurope"
     }
   }
 }
-
 
 variable "address_space" {
   default = "10.0.0.0/16"

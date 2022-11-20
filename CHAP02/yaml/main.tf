@@ -1,5 +1,10 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.0"
+  required_providers {
+    azurerm = {
+      version = "~> 3.20"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -12,7 +17,7 @@ locals {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rgyamldemo"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_virtual_network" "vnet" {

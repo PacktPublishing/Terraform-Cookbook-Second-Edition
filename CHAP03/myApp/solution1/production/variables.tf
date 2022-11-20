@@ -6,7 +6,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Location of Azure reource"
-  default     = "West Europe"
+  default     = "westeurope"
 }
 
 variable "service_plan_name" {

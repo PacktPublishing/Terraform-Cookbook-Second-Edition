@@ -13,7 +13,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-demo-nsg"
-  location = "West Europe"
+  location = "westeurope"
 }
 
 resource "azurerm_network_security_group" "example" {
