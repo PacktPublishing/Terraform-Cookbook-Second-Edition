@@ -1,4 +1,4 @@
-ngs_rules = [
+nsg_rules = [
   {
     name                       = "rule1"
     priority                   = 100

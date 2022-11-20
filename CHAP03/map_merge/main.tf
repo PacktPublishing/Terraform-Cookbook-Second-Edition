@@ -1,6 +1,10 @@
-
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -19,15 +23,13 @@ resource "azurerm_resource_group" "rg-app" {
   tags = var.tags
 }
 
-resource "azurerm_app_service_plan" "plan-app" {
+resource "azurerm_service_plan" "plan-app" {
   name                = "${var.service_plan_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  os_type = "Windows"
+  sku_name = "S1"
 }
 
 locals {
@@ -36,15 +38,17 @@ locals {
   }
 }
 
-resource "azurerm_app_service" "app" {
+resource "azurerm_windows_web_app" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = azurerm_app_service_plan.plan-app.id
+  service_plan_id     = azurerm_service_plan.plan-app.id
 
   site_config {
-    dotnet_framework_version = "v4.0"
-    scm_type                 = "LocalGit"
+    application_stack {
+      current_stack  = "dotnet"
+      dotnet_version = "v4.0"
+    }
   }
 
   app_settings = merge(local.default_app_settings, var.custom_app_settings)

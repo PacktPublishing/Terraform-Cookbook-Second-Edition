@@ -1,6 +1,10 @@
-
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -21,15 +25,13 @@ resource "azurerm_resource_group" "rg-app" {
   }
 }
 
-resource "azurerm_app_service_plan" "plan-app" {
+resource "azurerm_service_plan" "plan-app" {
   name                = "${var.service_plan_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  os_type = "Windows"
+  sku_name = "S1"
 
   tags = {
     ENV       = var.environment
@@ -37,11 +39,13 @@ resource "azurerm_app_service_plan" "plan-app" {
   }
 }
 
-resource "azurerm_app_service" "app" {
+resource "azurerm_linux_web_app" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = azurerm_app_service_plan.plan-app.id
+  service_plan_id = azurerm_service_plan.plan-app.id
+
+  site_config {}
 }
 
 resource "azurerm_application_insights" "appinsight-app" {

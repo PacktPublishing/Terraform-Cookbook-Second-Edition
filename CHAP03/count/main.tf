@@ -1,6 +1,10 @@
-
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -25,7 +29,7 @@ resource "azurerm_service_plan" "plan-app" {
 
 
 resource "azurerm_linux_web_app" "app" {
-  count               = var.nb_webapp
+  count               = var.webapp_count
   name                = "${var.app_name}-${var.environment}-${count.index + 1}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
