@@ -4,6 +4,10 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
+    random = {
+      source = "hashicorp/random"
+      version = "2.3.0"
+    }
   }
 }
 
@@ -11,18 +15,24 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg-app" {
-  name     = "${var.resource_group_name}-${var.environment}"
+resource "random_string" "random" {
+  length           = 4
+  special          = false
+  upper = false
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.resource_group_name}-${var.environment}-${random_string.random.result}"
   location = var.location
   tags = {
     ENV = var.environment
   }
 }
 
-resource "azurerm_service_plan" "plan-app" {
-  name                = "${var.service_plan_name}-${var.environment}"
-  location            = azurerm_resource_group.rg-app.location
-  resource_group_name = azurerm_resource_group.rg-app.name
+resource "azurerm_service_plan" "plan" {
+  name                = "${var.service_plan_name}-${var.environment}-${random_string.random.result}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   sku_name            = "S1"
   os_type             = "Linux"
 }
@@ -30,9 +40,9 @@ resource "azurerm_service_plan" "plan-app" {
 
 resource "azurerm_linux_web_app" "app" {
   count               = var.webapp_count
-  name                = "${var.app_name}-${var.environment}-${count.index + 1}"
-  location            = azurerm_resource_group.rg-app.location
-  resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id     = azurerm_service_plan.plan-app.id
+  name                = "${var.app_name}-${var.environment}-${random_string.random.result}-${count.index + 1}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  service_plan_id     = azurerm_service_plan.plan.id
   site_config {}
 }
