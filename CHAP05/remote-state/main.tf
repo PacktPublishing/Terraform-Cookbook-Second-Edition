@@ -34,9 +34,10 @@ data "terraform_remote_state" "service_plan_tfstate" {
   }
 }
 
-resource "azurerm_app_service" "app" {
+resource "azurerm_windows_web_app" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = data.terraform_remote_state.service_plan_tfstate.service_plan_id
+  service_plan_id     = data.terraform_remote_state.service_plan_tfstate.outputs.service_plan_id
+  site_config {}
 }
