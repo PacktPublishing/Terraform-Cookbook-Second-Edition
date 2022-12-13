@@ -4,8 +4,8 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
-        random = {
-      source = "hashicorp/random"
+    random = {
+      source  = "hashicorp/random"
       version = "2.3.0"
     }
   }
@@ -16,9 +16,9 @@ provider "azurerm" {
 }
 
 resource "random_string" "random" {
-  length           = 4
-  special          = false
-  upper = false
+  length  = 4
+  special = false
+  upper   = false
 }
 
 resource "azurerm_resource_group" "rg-app" {

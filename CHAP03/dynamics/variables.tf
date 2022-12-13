@@ -1,6 +1,6 @@
 variable "nsg_rules" {
   description = "List of NSG rules"
-  type        = list(object({
+  type = list(object({
     name                       = string
     priority                   = number
     direction                  = string

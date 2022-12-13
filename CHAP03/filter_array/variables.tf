@@ -24,7 +24,7 @@ variable "environment" {
 
 variable "web_apps" {
   description = "Map of web Apps to create"
-  type        = map(object({
+  type = map(object({
     name = string
     os   = string
   }))

@@ -30,7 +30,7 @@ resource "azurerm_service_plan" "plan-app" {
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  os_type = "Windows"
+  os_type  = "Windows"
   sku_name = "S1"
 
   tags = {
@@ -43,7 +43,7 @@ resource "azurerm_linux_web_app" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id = azurerm_service_plan.plan-app.id
+  service_plan_id     = azurerm_service_plan.plan-app.id
 
   site_config {}
 }

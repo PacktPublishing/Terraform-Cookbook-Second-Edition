@@ -4,8 +4,8 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
-        random = {
-      source = "hashicorp/random"
+    random = {
+      source  = "hashicorp/random"
       version = "2.3.0"
     }
   }
@@ -16,15 +16,15 @@ provider "azurerm" {
 }
 
 resource "random_string" "random" {
-  length           = 4
-  special          = false
-  upper = false
+  length  = 4
+  special = false
+  upper   = false
 }
 
 locals {
   linux_web_app   = toset([for each in var.web_apps : each.name if each.os == "Linux"])
   windows_web_app = toset([for each in var.web_apps : each.name if each.os == "Windows"])
-    default_app_settings = {
+  default_app_settings = {
     "DEFAULT_KEY1" = "DEFAULT_VAL1"
   }
 }
