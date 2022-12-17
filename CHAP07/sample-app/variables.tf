@@ -4,7 +4,7 @@ variable "resource_group_name" {
 
 variable "location" {
   description = "Location of Azure reource"
-  default     = "West Europe"
+  default     = "westeurope"
 }
 
 variable "service_plan_name" {
@@ -13,17 +13,11 @@ variable "service_plan_name" {
 
 variable "app_name" {
   description = "Name of application"
-  default     = "MyApp"
+  default     = "MyApp-demo"
 }
 
 variable "environment" {
   description = "Environment Name"
-}
-
-
-variable "custom_app_settings" {
-  description = "Custom App settings"
-  default     = {}
 }
 
 variable "createdby" {
