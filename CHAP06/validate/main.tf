@@ -5,7 +5,7 @@ provider "azurerm" {
 
 variable "rg_name" {
   description = "Name of the resource group"
-  default ="RG-DEMO-APP"
+  default     = "RG-DEMO-APP"
 }
 
 variable "location" {
@@ -17,7 +17,7 @@ resource "azurerm_resource_group" "rg-app" {
   name     = var.rg_name
   location = var.location
   tags = {
-    ENV = var.environment 
+    ENV = var.environment
   }
 }
 

@@ -13,10 +13,10 @@ module "resourcegroup" {
 }
 
 module "webapp" {
-  source               = "git::https://github.com/mikaelkrief/terraform-azurerm-webapp.git?ref=v1.0.0"
-  service_plan_name    = "spmyapp2"
-  app_name             = "myappdemobook2"
-  location             = "West Europe"
+  source              = "git::https://github.com/mikaelkrief/terraform-azurerm-webapp.git?ref=v1.0.0"
+  service_plan_name   = "spmyapp2"
+  app_name            = "myappdemobook2"
+  location            = "West Europe"
   resource_group_name = module.resourcegroup.resource_group_name
 }
 

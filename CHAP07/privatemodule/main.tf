@@ -13,10 +13,10 @@ resource "azurerm_resource_group" "rg-app" {
 }
 
 module "webapp" {
-  source               = "git::https://dev.azure.com/BookLabs/Terraform-modules/_git/terraform-azurerm-webapp?ref=v1.0.0"
-  service_plan_name    = "spmyapp2"
-  app_name             = "myappdemobook2"
-  location             = azurerm_resource_group.rg-app.location
+  source              = "git::https://dev.azure.com/BookLabs/Terraform-modules/_git/terraform-azurerm-webapp?ref=v1.0.0"
+  service_plan_name   = "spmyapp2"
+  app_name            = "myappdemobook2"
+  location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 }
 
