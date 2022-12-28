@@ -1,6 +1,6 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 1.0"
 }
 
 provider "azurerm" {
@@ -9,40 +9,46 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "rg-app" {
-  name     = "RG-DEMO"
+  name     = "RG-DEMO-ARM"
   location = "westeurope"
 }
 
-resource "azurerm_app_service_plan" "plan-app" {
+resource "azurerm_service_plan" "plan-app" {
   name                = "SPDemo"
   location            = "westeurope"
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  os_type  = "Windows"
+  sku_name = "S1"
 
 }
 
-resource "azurerm_app_service" "app" {
-  name                = "AppDemoARM"
-  location            = "westeurope"
+resource "azurerm_linux_web_app" "app" {
+  name                = "webapparm"
+  location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = azurerm_app_service_plan.plan-app.id
+  service_plan_id     = azurerm_service_plan.plan-app.id
+
+  site_config {}
 }
 
 
-resource "azurerm_template_deployment" "extension" {
+resource "azurerm_resource_group_template_deployment" "extension" {
   name                = "extension"
   resource_group_name = azurerm_resource_group.rg-app.name
-  template_body       = file("ARM_siteExtension.json")
+  template_content       = file("ARM_siteExtension.json")
 
-  parameters = {
-    appserviceName   = azurerm_app_service.app.name
-    extensionName    = "AspNetCoreRuntime.2.2.x64"
-    extensionVersion = "2.2.0-preview3-35497"
-  }
+  parameters_content = jsonencode({
+    "appserviceName" = {
+      value = azurerm_linux_web_app.app.name
+    },
+    "extensionName" = {
+      value = "AspNetCoreRuntime.2.2.x64"
+    },
+    "extensionVersion" = {
+      value = "2.2.0-preview3-35497"
+    } 
+  })
 
   deployment_mode = "Incremental"
 }

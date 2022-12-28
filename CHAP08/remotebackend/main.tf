@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 1.0"
   backend "azurerm" {
     resource_group_name  = "RG-TFBACKEND"
     storage_account_name = "storagetfbackend"
