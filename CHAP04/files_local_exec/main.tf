@@ -26,6 +26,6 @@ resource "null_resource" "readcontentfile" {
   provisioner "local-exec" {
     command = "Get-Content -Path ../mytextfile.txt"
 
-    interpreter = ["PowerShell", "-Command"]
+    interpreter = ["pwsh", "-Command"]
   }
 }

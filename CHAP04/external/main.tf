@@ -25,7 +25,7 @@ resource "azurerm_resource_group" "rg" {
 
 
 data "external" "getlocation" {
-  program = ["Powershell.exe", "./GetLocation.ps1"]
+  program = ["pwsh", "./GetLocation.ps1"]
 
   query = {
     environment = "${var.environment_name}"
