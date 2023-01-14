@@ -21,15 +21,12 @@ resource "azurerm_resource_group" "rg-app" {
   }
 }
 
-resource "azurerm_app_service_plan" "plan-app" {
+resource "azurerm_service_plan" "plan-app" {
   name                = "${var.service_plan_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+  sku_name = "S1"
 
   tags = {
     ENV       = var.environment
@@ -68,8 +65,8 @@ data "azurerm_storage_account_sas" "storage_sas" {
     table = false
     file  = false
   }
-  start  = "2020–06–15"
-  expiry = "2021–03–21"
+  start  = "2020-06-15"
+  expiry = "2024-09-21"
   permissions {
     read    = true
     write   = false
@@ -93,4 +90,16 @@ resource "azurerm_app_service" "app" {
   }
 }
 
+resource "azurerm_linux_web_app" "app" {
+  name                = "${var.app_name}-${var.environment}-${random_string.random.result}"
+  location            = azurerm_resource_group.rg-app.location
+  resource_group_name = azurerm_resource_group.rg-app.name
+  service_plan_id     = azurerm_service_plan.plan-app.id
 
+  site_config {}
+
+
+  app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE" = "https://${data.azurerm_storage_account.storagezip.name}.blob.core.windows.net/app/myapp_v1.0.0/zip${data.azurerm_storage_account_sas.storage_sas.sas}"
+  }
+}
