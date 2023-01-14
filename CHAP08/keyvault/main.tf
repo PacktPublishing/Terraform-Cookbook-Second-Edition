@@ -34,15 +34,15 @@ resource "azurerm_service_plan" "plan-app" {
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
- sku_name = "S1"
- os_type = "Windows"
+  sku_name = "S1"
+  os_type  = "Windows"
 }
 
 resource "azurerm_linux_web_app" "app" {
   name                = "demovaultbook"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id = azurerm_service_plan.plan-app.id
+  service_plan_id     = azurerm_service_plan.plan-app.id
 
   connection_string {
     name  = "Database"

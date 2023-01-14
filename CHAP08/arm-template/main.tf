@@ -36,7 +36,7 @@ resource "azurerm_linux_web_app" "app" {
 resource "azurerm_resource_group_template_deployment" "extension" {
   name                = "extension"
   resource_group_name = azurerm_resource_group.rg-app.name
-  template_content       = file("ARM_siteExtension.json")
+  template_content    = file("ARM_siteExtension.json")
 
   parameters_content = jsonencode({
     "appserviceName" = {
@@ -47,7 +47,7 @@ resource "azurerm_resource_group_template_deployment" "extension" {
     },
     "extensionVersion" = {
       value = "2.2.0-preview3-35497"
-    } 
+    }
   })
 
   deployment_mode = "Incremental"

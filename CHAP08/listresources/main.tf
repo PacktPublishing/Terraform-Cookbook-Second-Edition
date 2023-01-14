@@ -1,9 +1,14 @@
-provider "azurerm" {
-  features {}
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
 }
 
-terraform {
-  required_version = ">= 0.12"
+provider "azurerm" {
+  features {}
 }
 
 data "azurerm_resources" "nsg" {
