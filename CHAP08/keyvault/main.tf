@@ -1,6 +1,11 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
 }
 
 provider "azurerm" {
@@ -24,26 +29,26 @@ resource "azurerm_resource_group" "rg-app" {
   location = "West Europe"
 }
 
-resource "azurerm_app_service_plan" "plan-app" {
+resource "azurerm_service_plan" "plan-app" {
   name                = "SP-demovault"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
-  sku {
-    tier = "Standard"
-    size = "S1"
-  }
+ sku_name = "S1"
+ os_type = "Windows"
 }
 
-resource "azurerm_app_service" "app" {
+resource "azurerm_linux_web_app" "app" {
   name                = "demovaultbook"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = azurerm_app_service_plan.plan-app.id
+  service_plan_id = azurerm_service_plan.plan-app.id
 
   connection_string {
     name  = "Database"
     type  = "SQLServer"
     value = data.azurerm_key_vault_secret.app-connectionstring.value
   }
+
+  site_config {}
 }
