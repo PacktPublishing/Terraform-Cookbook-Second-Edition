@@ -42,6 +42,6 @@ resource "azurerm_linux_web_app" "app" {
   service_plan_id     = azurerm_service_plan.plan-app.id
   site_config {}
   app_settings = {
-    API_KEY = "demo123456"
+    API_KEY = "demo1234"
   }
 }

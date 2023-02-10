@@ -1,10 +1,15 @@
 
 terraform {
-  required_version = "~> 1.0"
+  required_version = "~> 1.1"
+  backend "azurerm" {
+    resource_group_name  = "RG-TFBACKEND"
+    storage_account_name = "storagetfbackend"
+    container_name       = "tfstate"
+    key                  = "myapp.tfstate"
+  }
   required_providers {
     azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~> 3.20"
+      version = "~> 3.23"
     }
   }
 }
