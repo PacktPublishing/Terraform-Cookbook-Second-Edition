@@ -11,3 +11,7 @@ sudo cp out2.png /mnt/c/tmp
 
 
 https://github.com/homeport/termshot
+
+
+export AWS_ACCESS_KEY_ID="AKIA5JRGUUYARULWNOYZ"
+export AWS_SECRET_ACCESS_KEY="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"
