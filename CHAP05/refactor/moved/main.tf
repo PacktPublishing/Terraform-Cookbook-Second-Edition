@@ -48,7 +48,7 @@ locals {
 }
 
 resource "azurerm_linux_web_app" "apps" {
-  for_each = toset(local.webapp_list)
+  for_each            = toset(local.webapp_list)
   name                = each.value
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
