@@ -12,7 +12,6 @@ terraform {
 }
 
 provider "google" {
-  project = "sturdy-tome-376118"
   region  = "us-central1"
 }
 
