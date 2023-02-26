@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "kubernetes" {
-  # Configuration options
   config_path = pathexpand("~/.kube/config")
 }
 
@@ -57,7 +56,7 @@ resource "kubernetes_deployment" "deployment" {
   }
 }
 
-resource "kubernetes_service" "example" {
+resource "kubernetes_service" "service" {
   metadata {
     name      = "webapp"
     namespace = kubernetes_namespace.ns.metadata.0.name

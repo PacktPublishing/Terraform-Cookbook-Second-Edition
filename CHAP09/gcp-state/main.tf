@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "google" {
-  region  = "us-central1"
+  region = "us-central1"
 }
 
 resource "google_compute_network" "vpc_network" {
