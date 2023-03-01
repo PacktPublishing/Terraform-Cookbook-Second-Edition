@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-kusto
+spec:
+  selector:
+    matchLabels:
+      app: webapp-kusto
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: webapp-kusto
+    spec:
+      containers:
+      - name: demobookk8s
+        image: mikaelkrief/demobook:latest
+        ports:
+        - containerPort: 80

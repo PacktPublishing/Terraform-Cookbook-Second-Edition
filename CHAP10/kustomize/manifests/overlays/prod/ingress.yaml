@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-kusto
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: webappp-prod.my-domain.com
+      http:
+        paths:
+        - backend:
+            service:
+              name: webapp-kusto
+              port: 
+                number: 80
+          pathType: Prefix
+          path: /
