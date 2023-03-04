@@ -3,4 +3,5 @@ service_plan_name   = "Plan-App"
 environment         = "DEV1"
 custom_app_settings = {
   APP = "1"
+  TEST = "gitops"
 }
