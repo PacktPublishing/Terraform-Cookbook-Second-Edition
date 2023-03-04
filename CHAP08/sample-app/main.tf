@@ -32,7 +32,6 @@ resource "azurerm_resource_group" "rg-app" {
   location = var.location
   tags = {
     ENV = var.environment
-    MODE = "gitops"
   }
 }
 
