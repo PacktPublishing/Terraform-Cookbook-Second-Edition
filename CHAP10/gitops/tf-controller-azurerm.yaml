@@ -1,0 +1,36 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: azurerm-demo
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/PacktPublishing/Terraform-Cookbook-Second-Edition
+  ref:
+    branch: main
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
+metadata:
+  name: azurerm-demo
+  namespace: flux-system
+spec:
+  path: ./CHAP08/sample-app/
+  interval: 1m
+  approvePlan: auto
+  sourceRef:
+    kind: GitRepository
+    name: azurerm-demo
+    namespace: flux-system
+  runnerPodTemplate:
+    spec:
+      env:
+      - name: ARM_CLIENT_ID
+        value: "63433d3e-0435-40af-9d41-f6c0877aa05c"
+      - name: ARM_TENANT_ID
+        value: "2e3a33f9-66b1-4e2a-8b95-74102ad857c2"
+      - name: ARM_CLIENT_SECRET
+        value: "QCu8Q~wPdee230PTKf3iLYP_1rkRke6baUD7Bafu"
+      - name: ARM_SUBSCRIPTION_ID
+        value: "8a7aace5-74aa-416f-b8e4-2c292b6304e5"

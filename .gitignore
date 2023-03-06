@@ -7,3 +7,4 @@ terraform.tfstate.backup
 cmd.txt
 *.tfplan
 gcp-key.json
+tf-controller-azurerm-demo.yaml
