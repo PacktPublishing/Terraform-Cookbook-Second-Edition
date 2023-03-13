@@ -13,10 +13,6 @@ terraform {
   }
 }
 
-locals {
-  expected_https_enabled = true
-  expected_name          = "123"
-}
 
 module "storage" {
   source = "../.."
@@ -33,9 +29,9 @@ resource "test_assertions" "https" {
   # in success between runs.
 
   equal "scheme" {
-    description = "https is enabled"
+    description = "https must be enabled"
     got         = module.storage.https_enabled
-    want        = local.expected_https_enabled
+    want        = true
   }
 
 }
@@ -51,8 +47,7 @@ resource "test_assertions" "storageName" {
   # in success between runs.
 
   check "storage_name" {
-    description = "storage name finish by 123"
+    description = "storage name must finish by 123"
     condition   = can(regex("^123", module.storage.storage_name))
   }
-
 }
