@@ -2,7 +2,6 @@ package terraform.policies.storage
 
 import input as plan
 
-
 azurerm_storage[resources] {
 	resources := plan.resource_changes[_]
 	resources.type == "azurerm_storage_account"
@@ -13,13 +12,14 @@ azurerm_storage[resources] {
 deny[msg] {
   az_storage := azurerm_storage[_]
   r := az_storage.change.after
-  r.enable_https_traffic_only == false
-  msg := sprintf("%v has not enable_https_traffic_only", [az_storage.address])
+  not r.enable_https_traffic_only
+  msg := sprintf("Storage Account %v must use HTTPS traffic only", [az_storage.name])
 }
 
 deny[msg] {
   az_storage := azurerm_storage[_]
   r := az_storage.change.after
   r.name != "sademotestopa123"
-  msg := sprintf("%v has no name sademotestopa123", [az_storage.name])
+  msg := sprintf("Storage Account %v must be named sademotestopa123", [az_storage.name])
 }
+
