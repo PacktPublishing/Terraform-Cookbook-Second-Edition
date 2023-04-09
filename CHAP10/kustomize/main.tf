@@ -2,7 +2,7 @@
 terraform {
   required_providers {
     kustomization = {
-      source = "kbst/kustomization"
+      source  = "kbst/kustomization"
       version = "0.9.2"
     }
   }
@@ -13,9 +13,9 @@ provider "kustomization" {
 }
 
 variable "environment" {
-  type = string
+  type        = string
   description = "Environment name"
-  default = "dev"
+  default     = "dev"
 }
 
 data "kustomization" "current" {

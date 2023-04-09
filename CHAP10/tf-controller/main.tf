@@ -14,9 +14,9 @@ provider "helm" {
 }
 
 resource "helm_release" "tf-controller" {
-  name             = "tf-controller"
-  repository       = "https://weaveworks.github.io/tf-controller/"
-  chart            = "tf-controller"
-  namespace        = "flux-system"
-  wait             = true
+  name       = "tf-controller"
+  repository = "https://weaveworks.github.io/tf-controller/"
+  chart      = "tf-controller"
+  namespace  = "flux-system"
+  wait       = true
 }

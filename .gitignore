@@ -9,3 +9,6 @@ cmd.txt
 gcp-key.json
 tf-controller-azurerm-demo.yaml
 .idea
+__pycache__
+.pytest_cache
+*.tfout
