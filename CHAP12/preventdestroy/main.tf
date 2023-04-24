@@ -70,6 +70,6 @@ resource "azurerm_application_insights" "appinsight-app" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
