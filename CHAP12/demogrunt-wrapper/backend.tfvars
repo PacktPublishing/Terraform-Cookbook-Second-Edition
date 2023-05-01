@@ -1,1 +1,1 @@
-path  = "demo.tfstate"
+path = "demo.tfstate"
