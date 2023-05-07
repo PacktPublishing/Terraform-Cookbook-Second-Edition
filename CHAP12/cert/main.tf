@@ -5,7 +5,7 @@ terraform {
       version = "4.0.4"
     }
     pkcs12 = {
-      source = "chilicat/pkcs12"
+      source  = "chilicat/pkcs12"
       version = "0.0.7"
     }
   }
@@ -60,6 +60,6 @@ resource "pkcs12_from_pem" "self_signed_cert_pkcs12" {
 }
 
 resource "local_file" "result" {
-  filename = "${path.module}/ca.pxf"
-  content_base64     = pkcs12_from_pem.self_signed_cert_pkcs12.result
+  filename       = "${path.module}/ca.pxf"
+  content_base64 = pkcs12_from_pem.self_signed_cert_pkcs12.result
 }
