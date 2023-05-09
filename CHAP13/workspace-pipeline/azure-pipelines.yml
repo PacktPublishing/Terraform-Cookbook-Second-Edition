@@ -32,7 +32,7 @@ steps:
     inputs:
       filePath: 'CHAP13/workspace-pipeline/ManageWorkspaces.ps1'
       arguments: '$(Build.SourceBranchName)'
-      workingDirectory: "CHAP07/workspace-pipeline/"
+      workingDirectory: "CHAP13/workspace-pipeline/"
 
   - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
     displayName: 'terraform plan'
