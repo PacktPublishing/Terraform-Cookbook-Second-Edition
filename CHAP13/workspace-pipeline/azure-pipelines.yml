@@ -19,7 +19,7 @@ steps:
     displayName: 'terraform init'
     inputs:
       command: init
-      workingDirectory: "CHAP06/workspaces/"
+      workingDirectory: "CHAP12/cert/"
       backendType: azurerm
       backendServiceArm: 'Demo Book'
       backendAzureRmResourceGroupName: 'RG_BACKEND'
@@ -32,13 +32,13 @@ steps:
     inputs:
       filePath: 'CHAP13/workspace-pipeline/ManageWorkspaces.ps1'
       arguments: '$(Build.SourceBranchName)'
-      workingDirectory: "CHAP13/workspace-pipeline/"
+      workingDirectory: "CHAP12/cert/"
 
   - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
     displayName: 'terraform plan'
     inputs:
       command: plan
-      workingDirectory: "CHAP06/workspaces/"
+      workingDirectory: "CHAP12/cert/"
       commandOptions: '-out="out.tfplan"'
 
 
@@ -46,5 +46,5 @@ steps:
     displayName: 'terraform apply'
     inputs:
       command: apply
-      workingDirectory: "CHAP06/workspaces/"
+      workingDirectory: "CHAP12/cert/"
       commandOptions: 'out.tfplan'
