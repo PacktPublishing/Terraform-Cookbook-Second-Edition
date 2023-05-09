@@ -24,11 +24,11 @@ stages:
             fetchDepth: 1
           - script: |
               docker build -t module-test:$(tag) .
-            workingDirectory: "$(Build.SourcesDirectory)/CHAP05/testing-terratest/"
+            workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
             displayName: "Docker build"
           - script: |
               docker run module-test:$(tag)
-            workingDirectory: "$(Build.SourcesDirectory)/CHAP05/testing-terratest/"
+            workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
             displayName: "Docker run"
           - task: PowerShell@2
             displayName: "Tag code"
