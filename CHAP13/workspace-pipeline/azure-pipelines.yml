@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - master
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-installer.TerraformInstaller@0
+    displayName: 'Install Terraform 1.4.4'
+    inputs:
+      terraformVersion: 1.4.4
+
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+    displayName: 'terraform init'
+    inputs:
+      command: init
+      workingDirectory: "CHAP06/workspaces/"
+      backendType: azurerm
+      backendServiceArm: 'Demo Book'
+      backendAzureRmResourceGroupName: 'RG_BACKEND'
+      backendAzureRmStorageAccountName: storagetfbackendbook
+      backendAzureRmContainerName: tfstate
+      backendAzureRmKey: myappdemows.tfstate
+
+  - task: PowerShell@2
+    displayName: 'Manage Workspaces'
+    inputs:
+      filePath: 'CHAP13/workspace-pipeline/ManageWorkspaces.ps1'
+      arguments: '$(Build.SourceBranchName)'
+      workingDirectory: "CHAP07/workspace-pipeline/"
+
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+    displayName: 'terraform plan'
+    inputs:
+      command: plan
+      workingDirectory: "CHAP06/workspaces/"
+      commandOptions: '-out="out.tfplan"'
+
+
+  - task: charleszipp.azure-pipelines-tasks-terraform.azure-pipelines-tasks-terraform-cli.TerraformCLI@0
+    displayName: 'terraform apply'
+    inputs:
+      command: apply
+      workingDirectory: "CHAP06/workspaces/"
+      commandOptions: 'out.tfplan'
