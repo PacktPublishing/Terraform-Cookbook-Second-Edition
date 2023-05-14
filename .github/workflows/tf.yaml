@@ -1,6 +1,10 @@
 name: 'Terraform'
 
-working-directory: ./CHAP12/cert/
+defaults:
+  run:
+    shell: bash
+    working-directory: CHAP12/cert/
+
 
 on:
   push:
