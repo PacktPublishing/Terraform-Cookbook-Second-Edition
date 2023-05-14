@@ -1,5 +1,12 @@
 name: 'Terraform'
 
+on:
+  push:
+    branches:
+    - main
+    paths: 
+    - CHAP12/cert/**
+
 permissions:
   contents: read
   pull-requests: write
