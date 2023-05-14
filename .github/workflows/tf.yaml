@@ -55,8 +55,6 @@ jobs:
     - name: summary in draw table format
       run: |
         rm -rf tf-summarize-table-output.md
-        echo "## tf-summarize output:" > tf-summarize-table-output.md
-        echo "" >> tf-summarize-table-output.md
         terraform show -json tf.plan | tf-summarize -md > tf-summarize-table-output.md
 
 
