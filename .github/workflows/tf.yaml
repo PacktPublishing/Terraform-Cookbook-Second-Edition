@@ -57,7 +57,6 @@ jobs:
         terraform show -json tf.plan | tf-summarize -md > tf-summarize-table-output.md
 
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -input=false tf.plan
 
     - name: Adding markdown
