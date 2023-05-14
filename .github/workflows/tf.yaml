@@ -68,4 +68,4 @@ jobs:
       uses: peter-evans/create-or-update-comment@v2
       with:
         issue-number: 19
-        body-file: 'tf-summarize-table-output.md'
+        body-file: './CHAP12/cert/tf-summarize-table-output.md'
