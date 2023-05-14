@@ -57,7 +57,7 @@ jobs:
         rm -rf tf-summarize-table-output.md
         echo "## tf-summarize output:" > tf-summarize-table-output.md
         echo "" >> tf-summarize-table-output.md
-        terraform show -json tf.plan | tf-summarize -md >> tf-summarize-table-output.md
+        terraform show -json tf.plan | tf-summarize -md > tf-summarize-table-output.md
 
 
     - name: Terraform Apply
@@ -67,4 +67,5 @@ jobs:
     - name: Adding markdown
       run: |
         CONT=$(cat tf-summarize-table-output.md)
+        echo $CONT
         echo $CONT >> $GITHUB_STEP_SUMMARY
