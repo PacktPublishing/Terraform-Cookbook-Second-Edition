@@ -49,15 +49,12 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: |
-        terraform plan -input=false -no-color -out tf.plan
+      run: terraform plan -input=false -no-color -out tf.plan
 
     - name: summary in draw table format
       run: |
         rm -rf tf-summarize-table-output.md
         terraform show -json tf.plan | tf-summarize -md > tf-summarize-table-output.md
-        cat tf-summarize-table-output.md
-
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
