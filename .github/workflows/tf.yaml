@@ -14,7 +14,7 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     name: Terraform
-    environment: staging 
+    environment: dev 
     steps:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -25,4 +25,4 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
-      working-directory: /home/runner/work/Terraform-Cookbook-Second-Edition/CHAP12/cert
+      working-directory: $GITHUB_ACTION_PATH/CHAP12/cert
