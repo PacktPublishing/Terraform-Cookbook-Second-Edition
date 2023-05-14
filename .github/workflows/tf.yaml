@@ -63,9 +63,3 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -input=false tf.plan
-
-    - name: Create comment with terraform plan summary
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        issue-number: 19
-        body-file: './CHAP12/cert/tf-summarize-table-output.md'
