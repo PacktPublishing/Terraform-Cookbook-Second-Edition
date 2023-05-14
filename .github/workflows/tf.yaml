@@ -26,6 +26,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Install terraform-plan-summary
+      run: |
+        REPO="dineshba/terraform-plan-summary"
+        curl -LO https://github.com/$REPO/releases/latest/download/tf-summarize_linux_amd64.zip
+        tmpDir=$(mktemp -d -t tmp.XXXXXXXXXX)
+        mv tf-summarize_linux_amd64.zip $tmpDir
+        cd $tmpDir
+        unzip tf-summarize_linux_amd64.zip
+        chmod +x tf-summarize
+        echo $PWD >> $GITHUB_PATH
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
@@ -41,10 +52,20 @@ jobs:
       run: |
         terraform plan -input=false -no-color -out tf.plan
 
-    - name: Terraform Show
-      id: show
-      run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+    - name: summary in draw table format
+      run: |
+        rm -rf tf-summarize-table-output.md
+        echo "## tf-summarize output:" > tf-summarize-table-output.md
+        echo "" >> tf-summarize-table-output.md
+        terraform show -json tf.plan | tf-summarize -md >> tf-summarize-table-output.md
+
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -input=false tf.plan
+
+    - name: Create comment with terraform plan summary
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: 19
+        body-file: './example/tf-summarize-table-output.md'
