@@ -27,5 +27,5 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
-      working-directory: ./CHAP12/cert
+      working-directory: CHAP12/cert
       shell: bash
