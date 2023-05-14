@@ -63,3 +63,6 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -input=false tf.plan
+
+    - name: Adding markdown
+      run: cat tf-summarize-table-output.md >> $GITHUB_STEP_SUMMARY
