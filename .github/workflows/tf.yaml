@@ -4,8 +4,6 @@ defaults:
   run:
     shell: bash
     working-directory: CHAP12/cert/
-
-
 on:
   push:
     branches:
@@ -13,8 +11,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
-
 
 jobs: 
   terraform:
@@ -56,9 +52,10 @@ jobs:
         rm -rf tf-summarize-table-output.md
         terraform show -json tf.plan | tf-summarize -md > tf-summarize-table-output.md
 
-    - name: Terraform Apply
-      run: terraform apply -input=false tf.plan
-
     - name: Adding markdown
       run: |
         cat tf-summarize-table-output.md > $GITHUB_STEP_SUMMARY
+
+    - name: Terraform Apply
+      run: terraform apply -input=false tf.plan
+
