@@ -3,7 +3,7 @@ name: Terraform Module integration test
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   validate:
     name: Test Module and publish
