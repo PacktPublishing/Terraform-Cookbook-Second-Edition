@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Set up Go 1.14
         uses: actions/setup-go@v1
@@ -22,7 +22,7 @@ jobs:
         run: go get -v -t -d ./...
 
       - name: Run Tests
-        working-directory: "CHAP05/testing-terratest/module/tests/"
+        working-directory: "CHAP07/testing-terratest/module/tests/"
         run: |
           go test -v -timeout 30m
 
