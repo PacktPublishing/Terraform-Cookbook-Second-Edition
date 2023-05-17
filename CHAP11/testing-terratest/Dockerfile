@@ -1,4 +1,4 @@
-FROM mikaelkrief/go-terraform:0.12.25
+FROM mikaelkrief/go-terraform:1.4.4
 
 ARG ARG_MODULE_NAME="module-test"
 ENV MODULE_NAME=${ARG_MODULE_NAME}
