@@ -13,3 +13,4 @@ __pycache__
 .pytest_cache
 *.tfout
 demo.tfstate
+.pluralith
