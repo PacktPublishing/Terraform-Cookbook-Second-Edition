@@ -13,7 +13,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "rg" {
   name     = "RG-VM"
-  location = "West Europe"
+  location = "East US"
 }
 
 resource "azurerm_public_ip" "ip" {
@@ -43,14 +43,10 @@ resource "azurerm_network_interface" "nic" {
 }
 
 
-data "azurerm_key_vault" "keyvault" {
-  name                = "keyvdemobook"
-  resource_group_name = "rg_keyvault"
-}
-
-data "azurerm_key_vault_secret" "vm-password" {
-  name         = "vmdemoaccess"
-  key_vault_id = data.azurerm_key_vault.keyvault.id
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
@@ -59,7 +55,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location                        = azurerm_resource_group.rg.location
   size                            = "Standard_F2"
   admin_username                  = "adminuser"
-  admin_password                  = data.azurerm_key_vault_secret.vm-password.value
+  admin_password                  = random_password.password.result
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.nic.id]
 
@@ -77,7 +73,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   provisioner "remote-exec" {
     inline = [
-      "apt update",
+      "sudo apt update",
+      "sudo apt install nginx -y"
     ]
 
     connection {
