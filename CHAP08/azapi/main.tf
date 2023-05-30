@@ -16,7 +16,6 @@ provider "azurerm" {
   features {}
 }
 
-provider "azapi" {}
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-demo-azapi"
