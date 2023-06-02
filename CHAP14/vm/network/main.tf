@@ -5,6 +5,16 @@ terraform {
       version = "~> 3.23"
     }
   }
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "demoBook"
+
+    workspaces {
+      name = "NetworkVM-state"
+    }
+  }
+
 }
 
 provider "azurerm" {
