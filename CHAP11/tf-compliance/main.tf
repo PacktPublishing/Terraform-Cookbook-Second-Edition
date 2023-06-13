@@ -24,7 +24,7 @@ resource "azurerm_storage_account" "storage" {
   account_tier              = "Standard"
   account_replication_type  = "GRS"
   enable_https_traffic_only = false #true
-  tags = {
-    DEMO = "book"
-  }
+  # tags = {
+  #   DEMO = "book"
+  # }
 }
