@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 data "azurerm_resource_group" "rg" {
-  name     = "RG-VMDEMOTFC"
+  name = "RG-VMDEMOTFC"
 }
 data "azurerm_subnet" "subnet" {
   name                 = "book"
