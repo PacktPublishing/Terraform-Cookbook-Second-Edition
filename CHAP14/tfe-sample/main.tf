@@ -24,7 +24,7 @@ resource "tfe_organization" "test-organization" {
   email = "admin@company.com"
 }
 
-resource "tfe_project" "test" {
+resource "tfe_project" "project" {
   organization = tfe_organization.test-organization.name
   name         = "appproject"
 }
@@ -38,3 +38,4 @@ resource "tfe_workspace" "wsvm" {
   name         = "vm"
   organization = tfe_organization.test-organization.name
 }
+
