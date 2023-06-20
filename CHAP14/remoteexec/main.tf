@@ -5,6 +5,14 @@ terraform {
       version = "~> 3.35"
     }
   }
+    cloud {
+    hostname     = "app.terraform.io"
+    organization = "demoBook"
+
+    workspaces {
+      name = "WebApp"
+    }
+  }
 }
 
 provider "azurerm" {
