@@ -34,7 +34,6 @@ module "network" {
   subnet_prefixes     = ["10.0.2.0/24"]
   subnet_names        = ["subnet1"]
   use_for_each        = true
-  depends_on          = [azurerm_resource_group.rg]
 }
 
 module "linuxservers" {
@@ -46,7 +45,6 @@ module "linuxservers" {
   vm_hostname         = "vmwebdemo"
   public_ip_dns       = var.vmhosts
   vnet_subnet_id      = module.network.vnet_subnets[0]
-  depends_on          = [azurerm_resource_group.rg]
 }
 
 

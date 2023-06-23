@@ -57,9 +57,9 @@ resource "azurerm_linux_web_app" "app" {
 
   site_config {}
 
-  lifecycle {
-    create_before_destroy = true
-  }
+  # lifecycle {
+  #   create_before_destroy = true
+  # }
 }
 
 resource "azurerm_application_insights" "appinsight-app" {
