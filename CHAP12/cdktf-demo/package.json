@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@cdktf/provider-azurerm": "^7.0.2",
+    "@cdktf/provider-random": "~8.0.0",
     "cdktf": "^0.16.1",
     "constructs": "^10.2.9"
   },

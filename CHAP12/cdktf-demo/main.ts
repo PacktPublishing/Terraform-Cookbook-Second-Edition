@@ -9,12 +9,14 @@ class CDKTFDemo extends TerraformStack {
   constructor(scope: Construct, name: string) {
     super(scope, name);
 
+    let random = (Math.random() + 1).toString(36).substring(7);
+
     new AzurermProvider(this, "azureFeature", {
       features: {},
     });
 
     const rg = new ResourceGroup(this, "cdktf-rg", {
-      name: "cdktf-demobook",
+      name: "cdktf-demobook-",
       location: "westeurope",
     });
 
@@ -23,11 +25,11 @@ class CDKTFDemo extends TerraformStack {
       skuName: "S1",
       resourceGroupName: rg.name,
       location: rg.location,
-      name: "cdktf-demobook"
+      name: "cdktf-demobook"+random
     });
 
     const app = new LinuxWebApp(this, "cdktf-app", {
-      name: "cdktf-demobook",
+      name: "cdktf-demobook"+random,
       location: rg.location,
       servicePlanId: asp.id,
       resourceGroupName: rg.name,

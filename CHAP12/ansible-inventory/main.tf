@@ -1,6 +1,21 @@
 
 terraform {
   required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
+    }
+  }
+}
+
+resource "random_string" "random" {
+  length  = 4
+  special = false
+  upper   = false
 }
 
 variable "virtual_machines" {
@@ -15,7 +30,11 @@ variable "virtual_machines" {
 
 
 provider "azurerm" {
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 }
 
 variable "vmhosts" {
@@ -25,7 +44,7 @@ variable "vmhosts" {
 
 resource "azurerm_resource_group" "rg" {
   location = "westeurope"
-  name     = "rg-ansible-inventory"
+  name     = "rg-ansible-inventory-${random_string.random.result}"
 }
 
 module "network" {
@@ -42,9 +61,9 @@ module "linuxservers" {
   vm_os_simple        = "UbuntuServer"
   nb_instances        = 2
   nb_public_ip        = 2
-  vm_hostname         = "vmwebdemo"
-  public_ip_dns       = var.vmhosts
-  vnet_subnet_id      = module.network.vnet_subnets[0]
+  vm_hostname         = "vmwebdemo-${random_string.random.result}"
+  #public_ip_dns       = ["${var.vmhosts}-${random_string.random.result}"]
+  vnet_subnet_id = module.network.vnet_subnets[0]
 }
 
 
