@@ -5,7 +5,7 @@ terraform {
       version = "~> 3.35"
     }
   }
-    cloud {
+  cloud {
     hostname     = "app.terraform.io"
     organization = "demoBook"
 

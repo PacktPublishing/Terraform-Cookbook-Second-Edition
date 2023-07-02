@@ -14,12 +14,12 @@ provider "azurerm" {
 
 
 resource "azurerm_resource_group" "rg-app" {
-  name     = "RG-APP-IMPORT"
+  name     = "RG-APP-IMPORT2"
   location = "westeurope"
 }
 
 
 import {
-  id = "/subscriptions/<your subscription id>/resourcegroups/RG-APP-IMPORT"
+  id = "/subscriptions/8a7aace5-74aa-416f-b8e4-2c292b6304e5/resourcegroups/RG-APP-IMPORT2"
   to = azurerm_resource_group.rg-app
 }
