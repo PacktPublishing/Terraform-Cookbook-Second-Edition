@@ -15,22 +15,23 @@ provider "azurerm" {
   features {}
 }
 
-resource "random_string" "random" {
+locals {
+  webapplist = ["webappdemobook1", "webappdemobook2"]
+}
+
+resource "random_string" "str" {
   length  = 4
   special = false
   upper   = false
 }
 
 resource "azurerm_resource_group" "rg-app" {
-  name     = "${var.resource_group_name}-${var.environment}"
+  name     = "${var.resource_group_name}-${random_string.str.result}"
   location = var.location
-  tags = {
-    ENV = var.environment
-  }
 }
 
 resource "azurerm_service_plan" "plan-app" {
-  name                = "${var.service_plan_name}-${var.environment}"
+  name                = "${var.service_plan_name}-${random_string.str.result}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
   os_type             = "Linux"
@@ -38,17 +39,16 @@ resource "azurerm_service_plan" "plan-app" {
 }
 
 resource "azurerm_linux_web_app" "app" {
-  for_each            = var.web_apps
-  name                = each.value["name"]
-  location            = lookup(each.value, "location", "westeurope")
+  for_each            = toset(local.webapplist)
+  name                = "${each.value}-${random_string.str.result}"
+  location            = "westeurope"
   resource_group_name = azurerm_resource_group.rg-app.name
   service_plan_id     = azurerm_service_plan.plan-app.id
-
   site_config {}
-
-  connection_string {
-    name  = "DataBase"
-    type  = "SQLServer"
-    value = "Server=${each.value["serverdatabase_name"]};Integrated Security=SSPI"
-  }
 }
+
+output "webapps_urls" {
+  value= azurerm_linux_web_app.app.default_hostname
+  #value = [for app in azurerm_linux_web_app.app : app.name]
+}
+
