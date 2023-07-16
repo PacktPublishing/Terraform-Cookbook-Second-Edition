@@ -30,7 +30,7 @@ stages:
           #     docker run module-test:$(tag)
           #   workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
           #   displayName: "Docker run"
-          - script: runtests.sh
+          - script: ./runtests.sh
             workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/module"
             displayName: "run test"
           - task: PowerShell@2
