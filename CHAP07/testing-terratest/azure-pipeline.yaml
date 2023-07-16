@@ -22,14 +22,17 @@ stages:
             persistCredentials: true
             clean: true
             fetchDepth: 1
-          - script: |
-              docker build -t module-test:$(tag) .
-            workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
-            displayName: "Docker build"
-          - script: |
-              docker run module-test:$(tag)
-            workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
-            displayName: "Docker run"
+          # - script: |
+          #     docker build -t module-test:$(tag) .
+          #   workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
+          #   displayName: "Docker build"
+          # - script: |
+          #     docker run module-test:$(tag)
+          #   workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/"
+          #   displayName: "Docker run"
+          - script: runtests.sh
+            workingDirectory: "$(Build.SourcesDirectory)/CHAP07/testing-terratest/module"
+            displayName: "run test"
           - task: PowerShell@2
             displayName: "Tag code"
             inputs:
