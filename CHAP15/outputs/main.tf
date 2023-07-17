@@ -48,7 +48,7 @@ resource "azurerm_linux_web_app" "app" {
 }
 
 output "webapps_urls" {
-  value= azurerm_linux_web_app.app.default_hostname
+  value = azurerm_linux_web_app.app.default_hostname
   #value = [for app in azurerm_linux_web_app.app : app.name]
 }
 

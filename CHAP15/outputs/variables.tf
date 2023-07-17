@@ -1,7 +1,7 @@
 variable "resource_group_name" {
   type        = string
   description = "Resource group name"
-  default = "RG-App"
+  default     = "RG-App"
 }
 
 variable "location" {
@@ -13,7 +13,7 @@ variable "location" {
 variable "service_plan_name" {
   type        = string
   description = "Service plan name"
-  default = "Plan-App"
+  default     = "Plan-App"
 }
 
 

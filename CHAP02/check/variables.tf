@@ -1,24 +1,31 @@
 variable "resource_group_name" {
-  type        = string
   description = "Resource group name"
-  default     = "RG-App"
 }
 
 variable "location" {
-  type        = string
   description = "Location of Azure reource"
   default     = "westeurope"
 }
 
 variable "service_plan_name" {
-  type        = string
   description = "Service plan name"
-  default     = "Plan-App"
 }
 
-
 variable "app_name" {
-  type        = string
   description = "Name of application"
-  default     = "MyApp"
+  default     = "MyApp-demo"
+}
+
+variable "environment" {
+  description = "Environment Name"
+}
+
+variable "createdby" {
+  description = "name of the triggers user"
+  default     = "NA"
+}
+
+variable "api_key" {
+  description = "Custom application API key"
+  sensitive   = true
 }

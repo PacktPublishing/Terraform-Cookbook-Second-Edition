@@ -88,3 +88,16 @@ output "webapp_password" {
   value       = azurerm_linux_web_app.app.site_credential
   sensitive   = true
 }
+
+
+check "response" {
+  data "http" "webapp" {
+    url      = "https://${azurerm_linux_web_app.app.default_hostname}"
+    insecure = true
+  }
+
+  assert {
+    condition     = data.http.webapp.status_code == 200
+    error_message = "Web app response is ${data.http.webapp.status_code}"
+  }
+}

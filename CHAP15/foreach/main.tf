@@ -39,7 +39,7 @@ resource "azurerm_service_plan" "plan-app" {
 }
 
 resource "azurerm_linux_web_app" "app" {
-  for_each            = local.webapplist
+  for_each = local.webapplist
   #for_each            = toset(local.webapplist)
   name                = "${each.value}-${random_string.str.result}"
   location            = "westeurope"
