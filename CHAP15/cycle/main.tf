@@ -39,8 +39,8 @@ data "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  name = "${azurerm_linux_virtual_machine.vm.name}-nic"
-  #name                = "${local.vmname}-nic"
+  name = "${azurerm_linux_virtual_machine.vm.name}-nic" #error
+  #name                = "${local.vmname}-nic" #correct
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 

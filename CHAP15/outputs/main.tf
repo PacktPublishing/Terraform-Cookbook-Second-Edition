@@ -47,8 +47,8 @@ resource "azurerm_linux_web_app" "app" {
   site_config {}
 }
 
-output "webapps_urls" {
-  value = azurerm_linux_web_app.app.default_hostname
-  #value = [for app in azurerm_linux_web_app.app : app.name]
+output "webapps_hostnames" {
+  value = azurerm_linux_web_app.app.default_hostname # error
+  #value = [for app in azurerm_linux_web_app.app : app.default_hostname] # correct
 }
 
