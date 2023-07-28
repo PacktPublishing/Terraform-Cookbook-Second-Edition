@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.1.0"
+  required_version = "~> 1.1.0"
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"
@@ -29,12 +29,12 @@ resource "tfe_project" "project" {
   name         = "appproject"
 }
 
-resource "tfe_workspace" "wsnetwork" {
+resource "tfe_workspace" "network" {
   name         = "network"
   organization = tfe_organization.test-organization.name
 }
 
-resource "tfe_workspace" "wsvm" {
+resource "tfe_workspace" "vm" {
   name         = "vm"
   organization = tfe_organization.test-organization.name
 }
