@@ -1,2 +1,2 @@
 resource_group_name = "My-RG"
-location            = "francecentrale"
+location            = "westeurope"

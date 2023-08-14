@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.13,<=1"
   required_providers {
     azurerm = {
       version = "2.10.0" # not available on darwin/arm64
