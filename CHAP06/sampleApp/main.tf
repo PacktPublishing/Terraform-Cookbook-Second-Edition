@@ -41,7 +41,7 @@ resource "azurerm_service_plan" "plan-app" {
   resource_group_name = azurerm_resource_group.rg-app.name
 
   os_type  = "Linux"
-  sku_name = "P1v2"
+  sku_name = "B2"
 
   tags = {
     ENV       = var.environment
