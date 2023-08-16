@@ -13,8 +13,13 @@ provider "azurerm" {
   features {}
 }
 
+resource "random_string" "str" {
+  length  = 4
+  special = false
+}
+
 resource "azurerm_resource_group" "rg-app" {
-  name     = "${var.resource_group_name}-${var.environment}"
+  name     = "${var.resource_group_name}-${var.environment}-${random_string.str.result}"
   location = var.location
   tags = {
     ENV = var.environment
@@ -22,7 +27,7 @@ resource "azurerm_resource_group" "rg-app" {
 }
 
 resource "azurerm_service_plan" "plan-app" {
-  name                = "${var.service_plan_name}-${var.environment}"
+  name                = "${var.service_plan_name}-${var.environment}-${random_string.str.result}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
 
@@ -36,7 +41,7 @@ resource "azurerm_service_plan" "plan-app" {
 }
 
 resource "azurerm_windows_web_app" "app" {
-  name                = "${var.app_name}-${var.environment}"
+  name                = "${var.app_name}-${var.environment}-${random_string.str.result}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
   service_plan_id     = azurerm_service_plan.plan-app.id
