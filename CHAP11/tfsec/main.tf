@@ -22,6 +22,7 @@ resource "azurerm_storage_account" "storage" {
   location                  = azurerm_resource_group.rg.location
   account_tier              = "Standard"
   account_replication_type  = "GRS"
-  enable_https_traffic_only = false #false
-  min_tls_version           = "TLS1_2"
+  enable_https_traffic_only = false #incorrect
+  #enable_https_traffic_only = false #correct
+  #min_tls_version           = "TLS1_2" #to add to be secure
 }
