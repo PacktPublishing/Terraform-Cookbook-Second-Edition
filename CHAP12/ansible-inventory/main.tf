@@ -64,6 +64,9 @@ module "linuxservers" {
   vm_hostname         = "vmwebdemo-${random_string.random.result}"
   #public_ip_dns       = ["${var.vmhosts}-${random_string.random.result}"]
   vnet_subnet_id = module.network.vnet_subnets[0]
+  enable_ssh_key = false
+  admin_username = "adminuser"
+  admin_password = "test123*"
 }
 
 
@@ -74,16 +77,4 @@ resource "local_file" "inventory" {
     {
       vm_dnshost = zipmap(var.vmhosts, module.linuxservers.network_interface_private_ip)
   })
-}
-
-output "ips" {
-  value = module.linuxservers.public_ip_address
-}
-
-output "dns" {
-  value = module.linuxservers.public_ip_dns_name
-}
-
-output "test" {
-  value = zipmap(var.vmhosts, module.linuxservers.network_interface_private_ip)
 }

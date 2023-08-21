@@ -16,4 +16,7 @@ module "linuxservers" {
   resource_group_name = var.resource_group_name
   vm_os_simple        = "UbuntuServer"
   vnet_subnet_id      = data.azurerm_subnet.subnet.id
+  enable_ssh_key = false
+  admin_username = "adminuser"
+  admin_password = "test123*"
 }

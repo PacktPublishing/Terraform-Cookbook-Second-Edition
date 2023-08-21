@@ -69,7 +69,8 @@ resource "azurerm_application_insights" "appinsight-app" {
     CreatedBy = var.createdby
   }
 
-  lifecycle {
-    prevent_destroy = false
-  }
+  # To add to prevent destro the resource
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
