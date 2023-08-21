@@ -12,9 +12,9 @@ provider "azurerm" {
   features {}
 }
 
-data azurerm_subscription "current" { }
+data "azurerm_subscription" "current" {}
 
 resource "azurerm_resource_group" "rg-app" {
-  name     = "RG-APP-IMPORT-${substr(data.azurerm_subscription.current.subscription_id,0,5)}"
+  name     = "RG-APP-IMPORT-${substr(data.azurerm_subscription.current.subscription_id, 0, 5)}"
   location = "westeurope"
 }
