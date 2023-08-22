@@ -9,7 +9,6 @@ terraform {
 }
 
 provider "kustomization" {
-  kubeconfig_path = pathexpand("~/.kube/config")
 }
 
 variable "environment" {

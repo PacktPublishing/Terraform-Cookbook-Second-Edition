@@ -9,9 +9,6 @@ terraform {
 
 provider "kind" {}
 
-locals {
-  k8s_config_path = pathexpand("~/.kube/config")
-}
 
 resource "kind_cluster" "default" {
   name            = "cluster-book"
