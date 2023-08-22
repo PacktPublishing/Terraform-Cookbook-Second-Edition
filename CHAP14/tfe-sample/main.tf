@@ -31,7 +31,7 @@ resource "random_string" "random" {
 }
 
 resource "tfe_organization" "test-organization" {
-  name  = "demo-tfe-book--${random_string.random.result}"
+  name  = "demo-tfe-book-${random_string.random.result}"
   email = "admin@company.com"
 }
 
