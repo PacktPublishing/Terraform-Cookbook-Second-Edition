@@ -13,10 +13,12 @@ provider "azurerm" {
 
 variable "app_name" {
   description = "Name of application"
+  type        = string
 }
 
 variable "environment" {
   description = "Environment Name"
+  type        = string
 }
 
 

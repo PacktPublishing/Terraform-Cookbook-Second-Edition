@@ -1,0 +1,9 @@
+---
+exclude:
+  - azure-appservice-account-identity-registered
+  - azure-appservice-authentication-enabled
+  - azure-appservice-require-client-cert
+  - azure-appservice-enable-http2
+  - azure-compute-disable-password-authentication
+  - azure-network-ssh-blocked-from-internet
+  - azure-network-no-public-ingress

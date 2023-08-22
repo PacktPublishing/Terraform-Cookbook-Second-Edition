@@ -13,6 +13,7 @@ provider "azurerm" {
 
 variable "resource_group_name" {
   default = "rg_test"
+  type    = string
 }
 
 resource "azurerm_resource_group" "rg" {

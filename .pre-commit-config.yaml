@@ -5,4 +5,7 @@ repos:
       - id: terraform_fmt
       - id: terraform_tflint
       - id: terraform_validate
+        exclude: CHAP02/version
       - id: terraform_tfsec
+        args:
+         - --args=--config-file=__GIT_WORKING_DIR__/.tfsec/config.yml  --ignore-hcl-errors

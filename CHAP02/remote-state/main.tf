@@ -1,16 +1,20 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.0"
+  required_providers {
+    azurerm = {
+      version = "~> 3.18"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
+    }
+  }
 }
 
 provider "azurerm" {
   skip_provider_registration = true
-}
-
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
+  features {}
 }
 
 resource "azurerm_resource_group" "rg-app" {
@@ -36,14 +40,14 @@ resource "azurerm_app_service" "app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  app_service_plan_id = data.terraform_remote_state.service_plan_tfstate.service_plan_id
+  app_service_plan_id = data.terraform_remote_state.service_plan_tfstate.outputs.service_plan_id
 }
 
 resource "azurerm_application_insights" "appinsight-app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  application_type    = "Web"
+  application_type    = "web"
 
   tags = {
     ENV       = var.environment
