@@ -24,7 +24,7 @@ resource "azurerm_network_security_rule" "default-rules" {
   for_each                    = { for n in data.azurerm_resources.nsg.resources : n.name => n }
   name                        = "${each.key}-SSH"
   priority                    = 100
-  direction                   = "InBound"
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"

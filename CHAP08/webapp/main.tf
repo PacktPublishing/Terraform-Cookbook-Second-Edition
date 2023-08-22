@@ -1,16 +1,15 @@
 
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.35"
+    }
+  }
 }
 
 provider "azurerm" {
   features {}
-}
-
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
 }
 
 resource "azurerm_resource_group" "rg-app" {
@@ -82,4 +81,6 @@ data "azurerm_storage_account_sas" "storage_sas" {
   }
 }
 
-
+output "storagesas" {
+  value = data.azurerm_storage_account_sas.storage_sas.id
+}

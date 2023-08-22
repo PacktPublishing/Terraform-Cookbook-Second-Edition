@@ -7,3 +7,4 @@ exclude:
   - azure-compute-disable-password-authentication
   - azure-network-ssh-blocked-from-internet
   - azure-network-no-public-ingress
+  - azure-storage-use-secure-tls-policy

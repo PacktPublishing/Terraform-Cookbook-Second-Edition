@@ -6,6 +6,10 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "3.2.1"
+    }
   }
 }
 

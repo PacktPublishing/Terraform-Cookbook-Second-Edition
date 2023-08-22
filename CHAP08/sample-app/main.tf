@@ -6,7 +6,7 @@ terraform {
     }
     random = {
       source  = "hashicorp/random"
-      version = "2.3.0"
+      version = "3.5.1"
     }
   }
 }
@@ -15,11 +15,6 @@ provider "azurerm" {
   features {}
 }
 
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
-}
 
 resource "random_string" "random" {
   length  = 4
