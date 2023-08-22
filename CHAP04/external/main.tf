@@ -4,14 +4,17 @@ provider "azurerm" {
 
 variable "application_name" {
   description = "The name of application"
+  type        = string
 }
 
 variable "environment_name" {
   description = "The name of environment"
+  type        = string
 }
 
 variable "country_code" {
   description = "The country code (FR-US-...)"
+  type        = string
 }
 
 locals {
@@ -28,7 +31,7 @@ data "external" "getlocation" {
   program = ["pwsh", "./GetLocation.ps1"]
 
   query = {
-    environment = "${var.environment_name}"
+    environment = var.environment_name
   }
 }
 

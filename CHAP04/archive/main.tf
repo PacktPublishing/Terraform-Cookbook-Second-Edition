@@ -13,3 +13,8 @@ data "archive_file" "backup" {
   source_file = "../mytextfile.txt"
   output_path = "${path.module}/archives/backup.zip"
 }
+
+
+output "archive" {
+  value = data.archive_file.backup.id
+}
