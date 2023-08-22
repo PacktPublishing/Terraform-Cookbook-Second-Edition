@@ -1,4 +1,12 @@
-terraform { required_version = ">= 0.12" }
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.23"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
 }
@@ -6,11 +14,13 @@ provider "azurerm" {
 variable "rg_name" {
   description = "Name of the resource group"
   default     = "RG-DEMO-APP"
+  type        = string
 }
 
 variable "location" {
   description = "location"
   default     = "westeurope"
+  type        = string
 }
 
 resource "azurerm_resource_group" "rg-app" {
@@ -23,4 +33,5 @@ resource "azurerm_resource_group" "rg-app" {
 
 variable "environment" {
   default = "DEMO"
+  type    = string
 }

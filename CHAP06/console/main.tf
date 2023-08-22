@@ -39,16 +39,16 @@ resource "azurerm_resource_group" "rg_app" {
 
 resource "azurerm_service_plan" "linux_plan_app" {
   name                = "${var.service_plan_name}-${var.environment}-linux-${random_string.random.result}"
-  location            = azurerm_resource_group.rg-app.location
-  resource_group_name = azurerm_resource_group.rg-app.name
+  location            = azurerm_resource_group.rg_app.location
+  resource_group_name = azurerm_resource_group.rg_app.name
   os_type             = "Linux"
   sku_name            = "S1"
 }
 
 resource "azurerm_service_plan" "windows_plan_app" {
   name                = "${var.service_plan_name}-${var.environment}-windows-${random_string.random.result}"
-  location            = azurerm_resource_group.rg-app.location
-  resource_group_name = azurerm_resource_group.rg-app.name
+  location            = azurerm_resource_group.rg_app.location
+  resource_group_name = azurerm_resource_group.rg_app.name
   os_type             = "Windows"
   sku_name            = "S1"
 }
@@ -58,8 +58,8 @@ resource "azurerm_linux_web_app" "app" {
 
   name                = each.value
   location            = "westeurope"
-  resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id     = azurerm_service_plan.linux-plan-app.id
+  resource_group_name = azurerm_resource_group.rg_app.name
+  service_plan_id     = azurerm_service_plan.linux_plan_app.id
 
   site_config {}
   app_settings = merge(local.default_app_settings, var.custom_app_settings)
@@ -71,8 +71,8 @@ resource "azurerm_windows_web_app" "app" {
 
   name                = each.value
   location            = "westeurope"
-  resource_group_name = azurerm_resource_group.rg-app.name
-  service_plan_id     = azurerm_service_plan.windows-plan-app.id
+  resource_group_name = azurerm_resource_group.rg_app.name
+  service_plan_id     = azurerm_service_plan.windows_plan_app.id
 
   site_config {}
 
