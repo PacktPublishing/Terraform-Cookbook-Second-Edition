@@ -1,9 +1,13 @@
 terraform {
-  required_version = "~> 1.1.0"
+  required_version = "~> 1.0"
   required_providers {
     tfe = {
       source  = "hashicorp/tfe"
       version = "0.45.0"
+    }
+     random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
     }
   }
   cloud {
@@ -19,8 +23,15 @@ terraform {
 provider "tfe" {
 }
 
+
+resource "random_string" "random" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
 resource "tfe_organization" "test-organization" {
-  name  = "demo-tfe-book"
+  name  = "demo-tfe-book--${random_string.random.result}"
   email = "admin@company.com"
 }
 
