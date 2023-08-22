@@ -11,11 +11,6 @@ provider "azurerm" {
   features {}
 }
 
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
-}
 
 resource "azurerm_resource_group" "rg-app" {
   name     = "${var.resource_group_name}-${var.environment}"
@@ -52,7 +47,7 @@ resource "azurerm_application_insights" "appinsight-app" {
   name                = "${var.app_name}-${var.environment}"
   location            = azurerm_resource_group.rg-app.location
   resource_group_name = azurerm_resource_group.rg-app.name
-  application_type    = "Web"
+  application_type    = "web"
 
   tags = {
     ENV       = var.environment

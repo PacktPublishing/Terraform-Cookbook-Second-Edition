@@ -25,13 +25,6 @@ variable "environment" {
   description = "Environment Name"
 }
 
-
-variable "custom_app_settings" {
-  type        = map(string)
-  description = "Custom App settings"
-  default     = {}
-}
-
 variable "createdby" {
   type        = string
   description = "name of the triggers user"

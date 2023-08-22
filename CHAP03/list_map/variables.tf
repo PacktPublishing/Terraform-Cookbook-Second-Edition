@@ -14,13 +14,6 @@ variable "service_plan_name" {
   description = "Service plan name"
 }
 
-
-variable "app_name" {
-  type        = string
-  description = "Name of application"
-  default     = "MyApp"
-}
-
 variable "environment" {
   type        = string
   description = "Environment Name"

@@ -11,12 +11,6 @@ provider "azurerm" {
   features {}
 }
 
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
-}
-
 resource "azurerm_resource_group" "rg-app" {
   name     = "${var.resource_group_name}-${var.environment}"
   location = var.location
