@@ -4,24 +4,33 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "2.3.0"
+    }
   }
 }
-
 
 provider "azurerm" {
   features {}
 }
 
+resource "random_string" "random" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
 module "resourcegroup" {
   source              = "./modules/rg-master"
-  resource_group_name = "RG_MyAPP_Demo2"
+  resource_group_name = "RG_MyAPP_Demo2-${random_string.random.result}"
   location            = "West Europe"
 }
 
 module "webapp" {
   source              = "./modules/webapp-1.0.0"
-  service_plan_name   = "spmyapp2"
-  app_name            = "myappdemobook2"
+  service_plan_name   = "spmyapp2-${random_string.random.result}"
+  app_name            = "myappdemobook2-${random_string.random.result}"
   location            = "West Europe"
   resource_group_name = module.resourcegroup.resource_group_name
 }
