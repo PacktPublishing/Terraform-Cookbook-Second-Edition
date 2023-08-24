@@ -11,14 +11,15 @@ provider "azurerm" {
   features {}
 }
 
-
 resource "azurerm_resource_group" "rg-app" {
-  name = var.resource_group_name # correct
-  #name     = ${var.resource_group_name} # error
+  #name = var.resource_group_name # correct
+  name     = ${var.resource_group_name} # error
   location = "westeurope"
 }
 
 
 variable "resource_group_name" {
   default = "rg-demo-error"
+  type        = string
+  description = "Resource group name"
 }
