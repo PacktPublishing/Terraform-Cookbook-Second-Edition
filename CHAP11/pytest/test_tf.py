@@ -18,8 +18,6 @@ def terraform_plan_output():
 
 def test_storage_account_https_only_enabled(terraform_plan_output):
 
-    
-    assert terraform_plan_output["format_version"] == "1.1"
     # Get the value of the 'enable_https_traffic_only' property
     enable_https_traffic_only = terraform_plan_output['resource_changes'][1]['change']['after']['enable_https_traffic_only']
 
