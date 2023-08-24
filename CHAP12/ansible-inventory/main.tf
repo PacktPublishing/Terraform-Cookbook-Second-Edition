@@ -43,16 +43,22 @@ variable "vmhosts" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  location = "westeurope"
+  location = "westus"
   name     = "rg-ansible-inventory-${random_string.random.result}"
 }
 
-module "network" {
-  source              = "Azure/network/azurerm"
+resource "azurerm_virtual_network" "vnet" {
+  name                = "vnet1"
+  address_space       = ["10.0.0.0/16"]
+  location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  subnet_prefixes     = ["10.0.2.0/24"]
-  subnet_names        = ["subnet1"]
-  use_for_each        = true
+}
+
+resource "azurerm_subnet" "snet1" {
+  name                 = "subnet1"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.1.0/24"]
 }
 
 module "linuxservers" {
@@ -62,11 +68,10 @@ module "linuxservers" {
   nb_instances        = 2
   nb_public_ip        = 2
   vm_hostname         = "vmwebdemo-${random_string.random.result}"
-  #public_ip_dns       = ["${var.vmhosts}-${random_string.random.result}"]
-  vnet_subnet_id = module.network.vnet_subnets[0]
-  enable_ssh_key = false
-  admin_username = "adminuser"
-  admin_password = "test123*"
+  vnet_subnet_id      = azurerm_subnet.snet1.id
+  enable_ssh_key      = false
+  admin_username      = "adminuser"
+  admin_password      = "test123*"
 }
 
 
