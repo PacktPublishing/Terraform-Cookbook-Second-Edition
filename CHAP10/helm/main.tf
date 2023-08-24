@@ -1,4 +1,5 @@
 terraform {
+  required_version = "~> 1.1"
   required_providers {
     helm = {
       source  = "hashicorp/helm"
@@ -11,18 +12,6 @@ provider "helm" {
   kubernetes {
   }
 }
-
-# provider "kubernetes" {
-# }
-
-# resource "kubernetes_namespace" "ns" {
-#   metadata {
-#     labels = {
-#       mylabel = "ingress"
-#     }
-#     name = "ingress"
-#   }
-# }
 
 
 resource "helm_release" "nginx_ingress" {
