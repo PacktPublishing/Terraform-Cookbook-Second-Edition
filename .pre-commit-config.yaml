@@ -3,10 +3,11 @@ repos:
     rev: "v1.78.0"
     hooks:
       - id: terraform_fmt
+        exclude: CHAP15
       - id: terraform_tflint
-        exclude: CHAP07/privatemodule|CHAP12/preventdestroy/
+        exclude: CHAP07/privatemodule|CHAP12/preventdestroy|CHAP15
       - id: terraform_validate
-        exclude: CHAP02/version|CHAP06/validate|CHAP07/privatemodule|CHAP07/moduledemo/myapp-loop
+        exclude: CHAP02/version|CHAP06/validate|CHAP07/privatemodule|CHAP07/moduledemo/myapp-loop|CHAP15
       - id: terraform_tfsec
         exclude: CHAP07/privatemodule
         args:

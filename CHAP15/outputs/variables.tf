@@ -15,10 +15,3 @@ variable "service_plan_name" {
   description = "Service plan name"
   default     = "Plan-App"
 }
-
-
-variable "app_name" {
-  type        = string
-  description = "Name of application"
-  default     = "MyApp"
-}

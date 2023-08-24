@@ -17,7 +17,6 @@ resource "azurerm_resource_group" "rg-app" {
   location = "westeurope"
 }
 
-
 variable "resource_group_name" {
   default = "rg-demo-error"
   type        = string

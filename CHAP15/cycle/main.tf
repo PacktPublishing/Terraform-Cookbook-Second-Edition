@@ -4,6 +4,10 @@ terraform {
     azurerm = {
       version = "~> 3.23"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.5.1"
+    }
   }
 }
 
@@ -51,7 +55,6 @@ resource "azurerm_network_interface" "nic" {
     public_ip_address_id          = azurerm_public_ip.ip.id
   }
 }
-
 
 resource "random_password" "password" {
   length           = 16
