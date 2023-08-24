@@ -4,8 +4,10 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
+        exclude: CHAP07/privatemodule
       - id: terraform_validate
-        exclude: CHAP02/version|CHAP06/validate
+        exclude: CHAP02/version|CHAP06/validate|CHAP07/privatemodule|CHAP07/moduledemo/myapp-loop
       - id: terraform_tfsec
+        exclude: CHAP07/privatemodule
         args:
          - --args=--config-file=__GIT_WORKING_DIR__/.tfsec/config.yml  --ignore-hcl-errors

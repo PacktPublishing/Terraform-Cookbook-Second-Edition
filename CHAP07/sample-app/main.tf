@@ -1,24 +1,18 @@
 terraform {
-  required_version = "~> 1.0"
+  required_version = "~> 1.1"
   required_providers {
     azurerm = {
-      version = "~> 3.18"
+      version = "~> 3.23"
     }
     random = {
       source  = "hashicorp/random"
-      version = "2.3.0"
+      version = "3.5.1"
     }
   }
 }
 
 provider "azurerm" {
   features {}
-}
-
-locals {
-  common_app_settings = {
-    "INSTRUMENTATIONKEY" = azurerm_application_insights.appinsight-app.instrumentation_key
-  }
 }
 
 resource "random_string" "random" {

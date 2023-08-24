@@ -7,4 +7,5 @@ variable "raw_string_list" {
 variable "permutation_count" {
   description = ""
   default     = 1
+  type        = number
 }

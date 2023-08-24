@@ -1,6 +1,14 @@
-variable "string1" {}
+terraform {
+  required_version = "~> 1.1"
+}
 
-variable "string2" {}
+variable "string1" {
+  type = string
+}
+
+variable "string2" {
+  type = string
+}
 
 ## PUT YOUR MODULE CODE
 ##

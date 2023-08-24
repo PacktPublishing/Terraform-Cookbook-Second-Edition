@@ -6,4 +6,5 @@ variable "raw_string_list_test" {
 
 variable "permutation_count_test" {
   description = ""
+  type        = number
 }

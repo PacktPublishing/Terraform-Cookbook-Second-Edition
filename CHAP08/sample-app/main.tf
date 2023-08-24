@@ -15,7 +15,6 @@ provider "azurerm" {
   features {}
 }
 
-
 resource "random_string" "random" {
   length  = 4
   special = false
