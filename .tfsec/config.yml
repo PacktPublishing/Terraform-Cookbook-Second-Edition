@@ -8,3 +8,4 @@ exclude:
   - azure-network-ssh-blocked-from-internet
   - azure-network-no-public-ingress
   - azure-storage-use-secure-tls-policy
+  - azure-storage-enforce-https

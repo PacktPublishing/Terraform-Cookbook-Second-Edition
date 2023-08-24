@@ -1,4 +1,5 @@
 terraform {
+  required_version = "~> 1.1"
   required_providers {
     # Because we're currently using a built-in provider as
     # a substitute for dedicated Terraform language syntax

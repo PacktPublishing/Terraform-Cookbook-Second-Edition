@@ -1,3 +1,12 @@
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "2.4.0"
+    }
+  }
+}
 
 variable "vmhosts" {
   type    = list(string)
