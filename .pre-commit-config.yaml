@@ -4,7 +4,7 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_tflint
-        exclude: CHAP07/privatemodule
+        exclude: CHAP07/privatemodule|CHAP12/preventdestroy/
       - id: terraform_validate
         exclude: CHAP02/version|CHAP06/validate|CHAP07/privatemodule|CHAP07/moduledemo/myapp-loop
       - id: terraform_tfsec

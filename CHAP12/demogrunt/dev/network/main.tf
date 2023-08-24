@@ -1,3 +1,11 @@
+terraform {
+  required_version = "~> 1.1"
+  required_providers {
+    azurerm = {
+      version = "~> 3.35"
+    }
+  }
+}
 
 provider "azurerm" {
   features {}
@@ -13,7 +21,6 @@ resource "azurerm_virtual_network" "vnet" {
     environment = "Terraform Demo"
   }
 }
-
 
 resource "azurerm_subnet" "subnet" {
   name                 = var.subnet_name

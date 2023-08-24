@@ -16,4 +16,5 @@ resource "random_string" "random" {
 
 variable "random_length" {
   default = 4
+  type    = number
 }

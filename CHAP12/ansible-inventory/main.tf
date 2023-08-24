@@ -9,6 +9,10 @@ terraform {
       source  = "hashicorp/random"
       version = "3.5.1"
     }
+    local = {
+      source  = "hashicorp/local"
+      version = "2.4.0"
+    }
   }
 }
 
@@ -16,16 +20,6 @@ resource "random_string" "random" {
   length  = 4
   special = false
   upper   = false
-}
-
-variable "virtual_machines" {
-  default = [
-    {
-      dns        = "test1.test.cloud"
-      index      = "01"
-      address_ip = "0.0.0.1"
-    }
-  ]
 }
 
 
@@ -63,6 +57,7 @@ resource "azurerm_subnet" "snet1" {
 
 module "linuxservers" {
   source              = "Azure/compute/azurerm"
+  version             = "5.3.0"
   resource_group_name = azurerm_resource_group.rg.name
   vm_os_simple        = "UbuntuServer"
   nb_instances        = 2
@@ -73,8 +68,6 @@ module "linuxservers" {
   admin_username      = "adminuser"
   admin_password      = "test123*"
 }
-
-
 
 resource "local_file" "inventory" {
   filename = "inventory"
