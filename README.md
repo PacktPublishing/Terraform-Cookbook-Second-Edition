@@ -24,6 +24,21 @@ By the end of this book, you'll have developed the skills needed to get the most
 - Add and apply test code and compliance security in Terraform configuration
 - Debug and troubleshoot common Terraform errors
 
+## New Edition v/s Previous Edition:  
+-	Real-world examples for provisioning Azure, AWS, and GCP infrastructure with Terraform.
+-	New chapters covering Terraform for Docker and Kubernetes, advanced GitOps practices, and testing Terraform configurations using different tools to check code and security compliance.
+-	A complete chapter dedicated to mastering Terraform Cloud.
+-	Troubleshooting common Terraform issues and solutions for frequently encountered errors.
+
+
+
+## What's New 
+-	Real-world examples for provisioning Azure, AWS, and GCP infrastructure with Terraform.
+-	New chapters covering Terraform for Docker and Kubernetes, advanced GitOps practices, and testing Terraform configurations using different tools to check code and security compliance.
+-	A complete chapter dedicated to mastering Terraform Cloud.
+-	Troubleshooting common Terraform issues and solutions for frequently encountered errors.
+
+
 ## Outline and Chapter Summary
 
 This new edition has been updated to include real-world examples for provisioning Azure, AWS and GCP infrastructure with Terraform. You'll delve into manual and automated testing with Terraform configurations, creating and managing a balanced, efficient, and reusable infrastructure with Terraform modules. You'll learn how to automate the deployment of Terraform configuration with continuous integration and continuous delivery (CI/CD).
