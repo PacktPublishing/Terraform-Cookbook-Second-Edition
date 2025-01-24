@@ -1,6 +1,3 @@
-
-<b><p align='center'>[![Packt Sale](https://static.packt-cdn.com/assets/images/image.jpeg)](https://www.packtpub.com/)</p></b>Get this book on sale at [Packt](https://www.packtpub.com/).
-
 # Terraform Cookbook, Second Edition
 This is the code repository for [Terraform Cookbook, Second Edition](https://www.packtpub.com/product/terraform-cookbook-second-edition/9781804616420), published by Packt.
 
